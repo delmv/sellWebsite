@@ -1,36 +1,50 @@
 package com.spring.henallux.transpLux.model;
 
-import java.util.Date;
+import javax.validation.constraints.Email;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 
 public class User {
     private int id;
-    private String email;
-    private String password;
+
+    @NotBlank()
     private String firstName;
+
+    @NotBlank
     private String lastName;
-    private Date birthDate;
-    private String adress;
-    private String privilege;
-    private int phoneNumber;
+
+    @NotBlank
+    @Email
+    private String email;
+
+    @NotNull
+    private Boolean male;
+
+    @NotBlank
+    private String city;
+
+    @NotBlank
+    private String country;
+
+    @NotNull
+    @Size(min=5, max = 15)
+    private String password;
+
+    @NotNull
+    @Size(min=5, max = 15)
+    private String repeatPassword;
 
     public User() { }
 
-    public String getEmail() {
-        return email;
+
+    public int getId() {
+        return id;
     }
 
-    public void setEmail(String email) {
-        this.email = email;
+    public void setId(int id) {
+        this.id = id;
     }
-
-    public String getPassword() {
-        return password;
-    }
-
-    public void setPassword(String password) {
-        this.password = password;
-    }
-
 
     public String getFirstName() {
         return firstName;
@@ -48,43 +62,51 @@ public class User {
         this.lastName = lastName;
     }
 
-    public String getAdress() {
-        return adress;
+    public String getEmail() {
+        return email;
     }
 
-    public void setAdress(String adress) {
-        this.adress = adress;
+    public void setEmail(String email) {
+        this.email = email;
     }
 
-    public Date getBirthDate() {
-        return birthDate;
+    public Boolean getMale() {
+        return male;
     }
 
-    public void setBirthDate(Date birthDate) {
-        this.birthDate = birthDate;
+    public void setMale(Boolean male) {
+        this.male = male;
     }
 
-    public String getPrivilege() {
-        return privilege;
+    public String getCity() {
+        return city;
     }
 
-    public void setPrivilege(String privilege) {
-        this.privilege = privilege;
+    public void setCity(String city) {
+        this.city = city;
     }
 
-    public int getPhoneNumber() {
-        return phoneNumber;
+    public String getCountry() {
+        return country;
     }
 
-    public void setPhoneNumber(int phoneNumber) {
-        this.phoneNumber = phoneNumber;
+    public void setCountry(String country) {
+        this.country = country;
     }
 
-    public int getId() {
-        return id;
+    public String getPassword() {
+        return password;
     }
 
-    public void setId(int id) {
-        this.id = id;
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
+    public String getRepeatPassword() {
+        return repeatPassword;
+    }
+
+    public void setRepeatPassword(String repeatPassword) {
+        this.repeatPassword = repeatPassword;
     }
 }

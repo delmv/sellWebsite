@@ -24,7 +24,9 @@
 
     <!-- custom style -->
     <link href='<spring:url value="/css/ui.css"/>' rel="stylesheet" type="text/css"/>
-    <link href='<spring:url value="/css/responsive.css"/>' rel="stylesheet" media="only screen and (max-width: 1200px)" />
+    <link href='<spring:url value="/css/responsive.css"/>' rel="stylesheet" media="only screen and (max-width: 1200px)" type="text/css"/>
+    <link href='<spring:url value="/css/custom.css"/>' rel="stylesheet" media="only screen and (max-width: 1200px)" type="text/css" />
+    <link href='<spring:url value="/css/bootstrap.css"/>' rel="stylesheet" media="only screen and (max-width: 1200px)" type="text/css" />
 
     <!-- custom javascript -->
     <script src='<spring:url value="/js/script.js"/>' type="text/javascript"></script>
@@ -39,6 +41,14 @@
         });
         // jquery end
     </script>
+
+    <spring:url value="" var="localeFr">
+        <spring:param name="locale" value="fr"/>
+    </spring:url>
+
+    <spring:url value="" var="localeEn">
+        <spring:param name="locale" value="en"/>
+    </spring:url>
 
 </head>
 <body>
@@ -73,14 +83,19 @@
                         <div class="widget-header icontext">
                             <a href='<spring:url value="myAccount"/>' class="icon icon-sm rounded-circle border"><i class="fa fa-user"></i></a>
                             <div class="text">
-                                <span class="text-muted">Welcome!</span>
+                                <span class="text-muted">Welcome! ${firstName}</span>
                                 <div>
-                                    <a href='<spring:url value="login"/>'>Sign in</a> |
-                                    <a href='<spring:url value="register"/>'> Register</a>
+                                    <p>
+                                        <a href='<spring:url value="login"/>'>Sign in</a> |
+                                        <a href='<spring:url value="register"/>'> Register</a>
+                                    </p>
+                                    <p>
+                                        <a href="${localeFr}">FR</a> |
+                                        <a href="${localeEn}"/>EN</a>
+                                    </p>
                                 </div>
                             </div>
                         </div>
-
                     </div> <!-- widgets-wrap.// -->
                 </div> <!-- col.// -->
             </div> <!-- row.// -->

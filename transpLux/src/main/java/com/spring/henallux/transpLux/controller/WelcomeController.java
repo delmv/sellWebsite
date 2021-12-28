@@ -1,16 +1,27 @@
 package com.spring.henallux.transpLux.controller;
 
+import com.spring.henallux.transpLux.Constants;
+import com.spring.henallux.transpLux.model.User;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.SessionAttributes;
 
 @Configuration
 @RequestMapping()
+@SessionAttributes({Constants.CURRENT_USER})
 public class WelcomeController {
+    @ModelAttribute(Constants.CURRENT_USER)
+    public User user(){
+        return new User();
+    }
+
     @RequestMapping(value="/home",method = RequestMethod.GET)
-    public String home(Model model){
+    public String home(Model model,@ModelAttribute(value = Constants.CURRENT_USER) User user){
         model.addAttribute("title", "Welcome Page");
+        model.addAttribute("firstName",user.getFirstName());
         return "integrated:page-index-3";
     }
 
@@ -29,14 +40,6 @@ public class WelcomeController {
         model.addAttribute("title", "Shopping Cart");
         return "integrated:page-shopping-cart";
     }
-    @RequestMapping(value = "/login",method = RequestMethod.GET)
-    public String login(Model model){
-        model.addAttribute("title", "Login");
-        return "integrated:page-user-login";
-    }
-    @RequestMapping(value = "/register",method = RequestMethod.GET)
-    public String register(Model model){
-        model.addAttribute("title", "Register");
-        return "integrated:page-user-register";
-    }
+
+
 }
