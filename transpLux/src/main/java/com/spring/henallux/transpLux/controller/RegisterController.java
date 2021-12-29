@@ -44,7 +44,7 @@ public class RegisterController {
         if (!errors.hasErrors() && user.getPassword().equals(user.getRepeatPassword())) {
             try {
                 userDataAccess.setUser(user);
-                return "redirect:/home";
+                return "redirect:/";
             }catch(Exception e){
                 System.out.println(e);
                 return "integrated:page-user-register";

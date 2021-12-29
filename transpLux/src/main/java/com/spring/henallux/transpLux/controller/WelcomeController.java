@@ -18,10 +18,11 @@ public class WelcomeController {
         return new User();
     }
 
-    @RequestMapping(value="/home",method = RequestMethod.GET)
+    @RequestMapping(value="",method = RequestMethod.GET)
     public String home(Model model,@ModelAttribute(value = Constants.CURRENT_USER) User user){
         model.addAttribute("title", "Welcome Page");
         model.addAttribute("firstName",user.getFirstName());
+        System.out.println(user.getFirstName());
         return "integrated:page-index-3";
     }
 

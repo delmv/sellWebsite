@@ -3,6 +3,7 @@ package com.spring.henallux.transpLux.dataAccess.dao;
 import com.spring.henallux.transpLux.dataAccess.entity.UserEntity;
 import com.spring.henallux.transpLux.dataAccess.repository.UserRepository;
 import com.spring.henallux.transpLux.dataAccess.util.UserConverter;
+import com.spring.henallux.transpLux.exceptions.UserNotFoundException;
 import com.spring.henallux.transpLux.model.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -15,8 +16,10 @@ public class UserDAO implements UserDataAccess {
 
     @Autowired
     public UserDAO(UserRepository userRepository, UserConverter userConverter) {
+
         this.userRepository = userRepository;
         this.userConverter = userConverter;
+
     }
 
 
@@ -30,7 +33,17 @@ public class UserDAO implements UserDataAccess {
     }
 
     @Override
-    public User getUser(String email, String password) {
-        return null;
+    public User getUser(String email, String password) throws UserNotFoundException {
+
+        UserEntity userEntity = userRepository.getUserEntityByEmailAndPassword(email, password);
+
+        if (userEntity == null)
+            throw new UserNotFoundException(email);
+
+        User user = userConverter.userEntityToUserModel(userEntity);
+
+        return user;
+
     }
+
 }
