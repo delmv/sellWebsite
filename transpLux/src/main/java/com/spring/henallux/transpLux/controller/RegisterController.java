@@ -1,7 +1,9 @@
 package com.spring.henallux.transpLux.controller;
 
 import com.spring.henallux.transpLux.Constants;
+import com.spring.henallux.transpLux.dataAccess.dao.UserDataAccess;
 import com.spring.henallux.transpLux.model.User;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -17,6 +19,12 @@ import javax.validation.Valid;
 @SessionAttributes({Constants.CURRENT_USER})
 public class RegisterController {
 
+    private UserDataAccess userDataAccess;
+
+    @Autowired
+    public RegisterController(UserDataAccess userDataAccess){
+        this.userDataAccess = userDataAccess;
+    }
     @ModelAttribute(Constants.CURRENT_USER)
     public User user(){
         return new User();
@@ -34,13 +42,16 @@ public class RegisterController {
                               @Valid @ModelAttribute(value = Constants.CURRENT_USER) User user,
                               final BindingResult errors) {
         if (!errors.hasErrors() && user.getPassword().equals(user.getRepeatPassword())) {
-            System.out.println(user);
-
-            return "redirect:/home";
+            try {
+                userDataAccess.setUser(user);
+                return "redirect:/home";
+            }catch(Exception e){
+                System.out.println(e);
+                return "integrated:page-user-register";
+            }
         } else {
             System.out.println("aie");
             return "integrated:page-user-register";
         }
-
     }
 }

@@ -4,6 +4,6 @@ server:
     contextPath: /transpLux
 spring:
   datasource:
-    password: 123456
-    url: jdbc:mysql://localhost:3306/translux?user=root
+    password: root
+    url: jdbc:mysql://localhost:3306/transplux?user=root
     driverClassName: com.mysql.cj.jdbc.Driver

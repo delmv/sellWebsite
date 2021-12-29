@@ -28,4 +28,9 @@ public class UserDAO implements UserDataAccess {
         userRepository.save(userEntity);
 
     }
+
+    @Override
+    public User getUser(String email, String password) {
+        return null;
+    }
 }

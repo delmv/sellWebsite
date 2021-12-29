@@ -7,5 +7,5 @@ import java.util.ArrayList;
 public interface UserDataAccess {
 
     void setUser(User user);
-
+    User getUser(String email, String password);
 }

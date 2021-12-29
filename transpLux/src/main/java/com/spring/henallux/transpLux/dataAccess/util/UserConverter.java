@@ -9,24 +9,14 @@ import org.springframework.stereotype.Component;
 @Component
 public class UserConverter {
 
+    private Mapper mapper = new DozerBeanMapper();
+
     public UserEntity userModelToUserEntity(User user) {
-
-        Mapper mapper = new DozerBeanMapper();
-
-        UserEntity entity = mapper.map(user, UserEntity.class);
-
-        return entity;
-
+        return mapper.map(user, UserEntity.class);
     }
 
     public User userEntityToUserModel(UserEntity userEntity) {
-
-        Mapper mapper = new DozerBeanMapper();
-
-        User user = mapper.map(userEntity, User.class);
-
-        return user;
-
+        return mapper.map(userEntity, User.class);
     }
 
 }
