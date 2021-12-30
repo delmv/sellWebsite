@@ -4,53 +4,29 @@
 <!DOCTYPE HTML>
 <html lang="en">
 <body>
+<nav class="navbar navbar-expand-md bg-dark navbar-dark">
+	<!-- Brand -->
+	<a class="navbar-brand" href="#">Categories</a>
 
-<nav class="navbar navbar-main navbar-expand-lg navbar-light">
-	<div class="container">
+	<!-- Toggler/collapsibe Button -->
+	<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
+		<span class="navbar-toggler-icon"></span>
+	</button>
 
-		<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#main_nav" aria-controls="main_nav" aria-expanded="false" aria-label="Toggle navigation">
-			<span class="navbar-toggler-icon"></span>
-		</button>
-
-		<div class="collapse navbar-collapse" id="main_nav">
-			<ul class="navbar-nav">
+	<!-- Navbar links -->
+	<div class="collapse navbar-collapse" id="collapsibleNavbar">
+		<ul class="navbar-nav">
+			<li class="nav-item">
+				<a class="nav-link" href="./products/all">All</a>
+			</li>
+			<c:forEach var="category" items="${categories}">
 				<li class="nav-item">
-					<span class="nav-link">Catégories :</span>
+					<a class="nav-link" href="./products/${category.getDefaultName()}">${category.getDefaultName()}</a>
 				</li>
-
-				<li class="nav-item dropdown">
-					<a class="nav-link pl-0" data-toggle="dropdown" href="#"><strong> <i class="fa fa-bars"></i> &nbsp  Voitures</strong></a>
-					<div class="dropdown-menu">
-						<a class="dropdown-item" href="#">Voitures de luxe</a>
-						<a class="dropdown-item" href="#">Voiture de sport</a>
-						<a class="dropdown-item" href="#">Limousines</a>
-						<a class="dropdown-item" href="#">4X4</a>
-					</div>
-				</li>
-
-				<li class="nav-item dropdown">
-					<a class="nav-link pl-0" data-toggle="dropdown" href="#"><strong> <i class="fa fa-bars"></i> &nbsp  Bateaux</strong></a>
-					<div class="dropdown-menu">
-						<a class="dropdown-item" href="#">Yachts</a>
-						<a class="dropdown-item" href="#">Day-cruisers</a>
-						<a class="dropdown-item" href="#">Jet ski</a>
-					</div>
-				</li>
-
-
-				<li class="nav-item dropdown">
-					<a class="nav-link pl-0" data-toggle="dropdown" href="#"><strong> <i class="fa fa-bars"></i> &nbsp  Avions</strong></a>
-					<div class="dropdown-menu">
-						<a class="dropdown-item" href="#">Jet privé</a>
-						<a class="dropdown-item" href="#">Avions légers</a>
-					</div>
-				</li>
-			</ul>
-		</div> <!-- collapse .// -->
-	</div> <!-- container .// -->
+			</c:forEach>
+		</ul>
+	</div>
 </nav>
-
-
 <!-- ========================= SECTION INTRO ========================= -->
 <section class="section-intro">
 

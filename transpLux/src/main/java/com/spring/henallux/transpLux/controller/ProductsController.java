@@ -19,7 +19,7 @@ public class ProductsController {
     private ProductDAO productDAO;
 
     @Autowired
-    private ProductsController(ProductDAO productDAO){
+    public ProductsController(ProductDAO productDAO){
         this.productDAO = productDAO;
     }
 

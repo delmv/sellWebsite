@@ -1,7 +1,10 @@
 package com.spring.henallux.transpLux.controller;
 
 import com.spring.henallux.transpLux.Constants;
+import com.spring.henallux.transpLux.dataAccess.dao.CategoryDAO;
+import com.spring.henallux.transpLux.dataAccess.dao.ProductDAO;
 import com.spring.henallux.transpLux.model.User;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -13,6 +16,15 @@ import org.springframework.web.bind.annotation.SessionAttributes;
 @RequestMapping()
 @SessionAttributes({Constants.CURRENT_USER})
 public class WelcomeController {
+
+    private CategoryDAO categoryDAO;
+
+    @Autowired
+    public WelcomeController(CategoryDAO categoryDAO){
+        this.categoryDAO = categoryDAO;
+    }
+
+
     @ModelAttribute(Constants.CURRENT_USER)
     public User user(){
         return new User();
@@ -22,6 +34,7 @@ public class WelcomeController {
     public String home(Model model,@ModelAttribute(value = Constants.CURRENT_USER) User user){
         model.addAttribute("title", "Welcome Page");
         model.addAttribute("firstName",user.getFirstName());
+        model.addAttribute("categories", categoryDAO.findAllCategory());
         System.out.println(user.getFirstName());
         return "integrated:page-index-3";
     }
