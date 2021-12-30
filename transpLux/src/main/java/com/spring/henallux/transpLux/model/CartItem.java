@@ -4,9 +4,6 @@ import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
 
 public class CartItem {
-
-    private int productId;
-
     private Product product;
 
     @NotNull
@@ -14,14 +11,6 @@ public class CartItem {
     private int quantity;
 
     public CartItem() {
-    }
-
-    public int getProductId() {
-        return productId;
-    }
-
-    public void setProductId(int productId) {
-        this.productId = productId;
     }
 
     public int getQuantity() {

@@ -32,34 +32,40 @@
 </tr>
 </thead>
 <tbody>
-<tr>
-	<td>
-		<figure class="itemside">
-			<div class="aside"><img src="images/products/Jet_Ski/Kawasaki_STX_160_Logo.png" class="img-sm"></div>
-			<figcaption class="info">
-				<a href="#" class="title text-dark">Some name of item goes here nice</a>
-				<p class="text-muted small">Size: XL, Color: blue, <br> Brand: Gucci</p>
-			</figcaption>
-		</figure>
-	</td>
-	<td> 
-		<select class="form-control">
-			<option>1</option>
-			<option>2</option>	
-			<option>3</option>	
-			<option>4</option>	
-		</select> 
-	</td>
-	<td> 
-		<div class="price-wrap"> 
-			<var class="price">$1156.00</var> 
-			<small class="text-muted"> $315.20 each </small> 
-		</div> <!-- price-wrap .// -->
-	</td>
-	<td class="text-right"> 
-	<a href="" class="btn btn-light"> Remove</a>
-	</td>
-</tr>
+<c:forEach var="item" items="${items}">
+
+	<tr>
+
+		<td>
+			<figure class="itemside">
+				<div class="aside"><img src="${item.product.productLogo}" class="img-sm"></div>
+				<figcaption class="info">
+					<span class="title text-dark">${item.product.label}</span>
+					<p class="text-muted small">${item.product.description}</p>
+				</figcaption>
+			</figure>
+		</td>
+		<td>
+			<select class="form-control" value="${item.quantity}">
+				<option>1</option>
+				<option>2</option>
+				<option>3</option>
+				<option>4</option>
+				<option>5</option>
+			</select>
+		</td>
+		<td>
+			<div class="price-wrap">
+				<var class="price">$${item.product.price * item.quantity}</var>
+				<small class="text-muted"> $${item.product.price} each </small>
+			</div> <!-- price-wrap .// -->
+		</td>
+		<td class="text-right">
+			<a href="" class="btn btn-light"> Remove</a>
+		</td>
+	</tr>
+
+</c:forEach>
 </tbody>
 </table>
 

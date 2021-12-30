@@ -4,10 +4,7 @@ import com.spring.henallux.transpLux.Constants;
 import com.spring.henallux.transpLux.dataAccess.dao.ProductAccessDAO;
 import com.spring.henallux.transpLux.dataAccess.dao.ProductDAO;
 import com.spring.henallux.transpLux.exceptions.EmptyProductListException;
-import com.spring.henallux.transpLux.model.Cart;
-import com.spring.henallux.transpLux.model.CartItem;
-import com.spring.henallux.transpLux.model.Product;
-import com.spring.henallux.transpLux.model.Quantity;
+import com.spring.henallux.transpLux.model.*;
 import org.hibernate.cache.spi.support.AbstractReadWriteAccess;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -18,7 +15,7 @@ import org.springframework.web.bind.annotation.*;
 import javax.validation.Valid;
 import java.util.ArrayList;
 @Controller
-@SessionAttributes({Constants.CART})
+@SessionAttributes({Constants.CURRENT_USER})
 @RequestMapping(value = "/products")
 public class ProductsController {
 
@@ -29,9 +26,9 @@ public class ProductsController {
         this.productDAO = productDAO;
     }
 
-    @ModelAttribute(Constants.CART)
-    public Cart cart() {
-        return new Cart();
+    @ModelAttribute(Constants.CURRENT_USER)
+    public User user() {
+        return new User();
     }
 
     @RequestMapping(value = "/{category}", method = RequestMethod.GET)
@@ -57,24 +54,6 @@ public class ProductsController {
         }
     }
 
-    @RequestMapping(value = "/addToCart/{productId}", method = RequestMethod.POST)
-    public String addToCart(Model model, @PathVariable String productId, @Valid @ModelAttribute(value = "quantity")Quantity quantity, @ModelAttribute(value = Constants.CART)Cart cart, final BindingResult errors) {
 
-        if (errors.hasErrors()) {
-
-            return "integrated:page-listing-large-prod";
-
-        }
-
-        // MODIFIER L'EXCEPTION
-        try {
-            Product product = productDAO.findProductById(Integer.parseInt(productId));
-            cart.addProduct(product, quantity.getNumber());
-        } catch (Exception e) {
-            System.out.println("Erreur lors du parse");
-        }
-
-        return "integrated:page-listing-large-prod";
-    }
 
 }

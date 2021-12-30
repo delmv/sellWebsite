@@ -55,7 +55,7 @@
 							<li>${product.getDescription()}</li>
 						</ul>
 						<form:form
-							action="addToCart/${product.getId()}"
+							action="/transpLux/cart/addToCart/${product.getId()}"
 							method="POST"
 							modelAttribute="quantity">
 							<div class="form-row">

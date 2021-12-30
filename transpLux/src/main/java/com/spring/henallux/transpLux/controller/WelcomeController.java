@@ -14,28 +14,17 @@ import org.springframework.web.bind.annotation.SessionAttributes;
 
 @Configuration
 @RequestMapping()
-@SessionAttributes({Constants.CURRENT_USER, Constants.CART})
+@SessionAttributes({Constants.CURRENT_USER})
 public class WelcomeController {
     @ModelAttribute(Constants.CURRENT_USER)
     public User user(){
         return new User();
     }
 
-    @ModelAttribute(Constants.CART)
-    public Cart cart() {
-        return new Cart();
-    }
-
     @RequestMapping(value="",method = RequestMethod.GET)
-    public String home(Model model,@ModelAttribute(value = Constants.CURRENT_USER) User user, @ModelAttribute(value = Constants.CART) Cart cart){
+    public String home(Model model,@ModelAttribute(value = Constants.CURRENT_USER) User user){
         model.addAttribute("title", "Welcome Page");
         model.addAttribute("firstName",user.getFirstName());
-        System.out.println(user.getFirstName());
-
-        // À enlever, c'est pour essayer mon cart
-        for (CartItem product : cart.getProducts().values()) {
-            System.out.println(product.getProduct().getId());
-        }
 
         return "integrated:page-index-3";
     }
