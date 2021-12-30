@@ -22,6 +22,14 @@ public class Product {
     public Product() {
     }
 
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
     public String getLabel() {
         return label;
     }
@@ -54,6 +62,14 @@ public class Product {
         this.promotion = promotion;
     }
 
+    public Category getCategory() {
+        return category;
+    }
+
+    public void setCategory(Category category) {
+        this.category = category;
+    }
+
     public String getCountry() {
         return country;
     }
@@ -76,21 +92,5 @@ public class Product {
 
     public void setProductLogo(String productLogo) {
         this.productLogo = productLogo;
-    }
-
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
-    }
-
-    public Category getCategory() {
-        return category;
-    }
-
-    public void setCategory(Category category) {
-        this.category = category;
     }
 }

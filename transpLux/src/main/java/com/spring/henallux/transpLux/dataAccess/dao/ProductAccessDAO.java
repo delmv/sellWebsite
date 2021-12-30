@@ -8,4 +8,5 @@ import java.util.ArrayList;
 public interface ProductAccessDAO {
     ArrayList<Product> findProductByCategory(String category) throws EmptyProductListException;
     ArrayList<Product> findAllProducts() throws EmptyProductListException;
+    Product findProductById(Integer id) throws Exception;
 }

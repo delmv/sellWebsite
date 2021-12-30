@@ -33,6 +33,7 @@
 
 <div class="row">
 	<c:forEach var="product" items="${products}">
+
 	<main class="col-md-9">
 
 		<img src=${product.getProductImage()}  height="200dp" style="display: block; margin-left: auto; margin-right: auto;" />
@@ -53,23 +54,27 @@
 						<ul class="list-bullet">
 							<li>${product.getDescription()}</li>
 						</ul>
-		
-						<div class="form-row">
-							<div class="form-group col-md flex-grow-0">
-								<div class="input-group input-spinner" data-dashlane-rid="232d79aebf1e943e" data-form-type="other">
-								  <div class="input-group-prepend">
-									<button class="btn btn-light" type="button" id="button-plus"> - </button>
-								  </div>
-								  <input type="text" class="form-control" value="1" data-dashlane-rid="bdb8e614781bb362" data-form-type="other">
-								  <div class="input-group-append">
-									<button class="btn btn-light" type="button" id="button-minus" data-dashlane-rid="d08ae62580e61778" data-dashlane-label="true" data-form-type="other"> + </button>
-								  </div>
-								</div>  <!-- input-spinner.// -->
-							</div> <!-- col.// -->
-							<div class="form-group col-md">
-								<a href="#" class="btn btn-primary"> <span class="text">Add to cart</span> <i class="fas fa-shopping-cart"></i> </a>
-							</div> <!-- col.// -->
-						</div> <!-- row.// -->
+						<form:form
+							action="addToCart/${product.getId()}"
+							method="POST"
+							modelAttribute="quantity">
+							<div class="form-row">
+								<div class="form-group col-md flex-grow-0">
+									<div class="input-group input-spinner" data-dashlane-rid="232d79aebf1e943e" data-form-type="other">
+										<div class="input-group-prepend">
+											<span style="padding-top: 10%">Quantity⠀</span>
+										</div>
+										<form:input type="number" min="1" max="5" class="form-control" style="min-width: 60px" path="number" data-dashlane-rid="bdb8e614781bb362" data-form-type="other" />
+										<form:errors path="number"/>
+									</div>  <!-- input-spinner.// -->
+								</div> <!-- col.// -->
+								<div class="form-group col-md">
+										<form:button class="addToCartButton">
+											<span class="btn btn-primary"> <span class="text">Add to cart</span> <i class="fas fa-shopping-cart"></i></span>
+										</form:button>
+								</div> <!-- col.// -->
+							</div> <!-- row.// -->
+						</form:form>
 				</div> <!-- col.// -->
 			</div> <!-- row.// -->
 			</div> <!-- card-body .// -->
