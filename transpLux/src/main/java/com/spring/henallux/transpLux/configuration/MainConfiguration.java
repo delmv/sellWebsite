@@ -46,4 +46,5 @@ public class MainConfiguration implements WebMvcConfigurer {
         resolver.setCookieMaxAge(-1);
         return resolver;
     }
+
 }

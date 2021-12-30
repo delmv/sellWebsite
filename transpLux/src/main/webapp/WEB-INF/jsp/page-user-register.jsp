@@ -29,9 +29,7 @@
                             <spring:message code="lastNameLabel"/>
                         </form:label>
                         <form:input path="lastName" type="text" class="form-control" placeholder=""/>
-                        <span style="color: red">
                             <form:errors path="lastName" element="div"/>
-                        </span>
                     </div> <!-- form-group end.// -->
                 </div>
                 <!-- form-row end.// -->

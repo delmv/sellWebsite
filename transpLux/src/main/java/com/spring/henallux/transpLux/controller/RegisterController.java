@@ -11,7 +11,6 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.SessionAttributes;
-
 import javax.validation.Valid;
 
 @Controller
@@ -43,6 +42,7 @@ public class RegisterController {
                               final BindingResult errors) {
         if (!errors.hasErrors() && user.getPassword().equals(user.getRepeatPassword())) {
             try {
+
                 userDataAccess.setUser(user);
                 return "redirect:/";
             }catch(Exception e){

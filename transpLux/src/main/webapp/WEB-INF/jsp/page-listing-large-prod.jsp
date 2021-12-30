@@ -11,10 +11,17 @@
 	<h2 class="title-page">Category products</h2>
 	<nav>
 	<ol class="breadcrumb text-white">
-	    <li class="breadcrumb-item"><a href="#">Home</a></li>
-	    <li class="breadcrumb-item"><a href="#">Best category</a></li>
-	    <li class="breadcrumb-item active" aria-current="page">Great articles</li>
-	</ol>  
+	    <li class="breadcrumb-item"><a href="/transpLux">Home</a></li>
+	    <c:choose>
+			<c:when test="${!noCategory}">
+				<li class="breadcrumb-item"><a href="./all">Products</a></li>
+				<li class="breadcrumb-item active" aria-current="page">${products[0].category.getDefaultName()}</li>
+			</c:when>
+			<c:otherwise>
+				<li class="breadcrumb-item active" aria-current="page">Products</li>
+			</c:otherwise>
+		</c:choose>
+	</ol>
 	</nav>
 </div> <!-- container //  -->
 </section>
@@ -25,27 +32,26 @@
 <div class="container">
 
 <div class="row">
+	<c:forEach var="product" items="${products}">
 	<main class="col-md-9">
 
-		<img src="images/products/bmw_i8.jpg"  height="200dp" style="display: block; margin-left: auto; margin-right: auto;" />
+		<img src=${product.getProductImage()}  height="200dp" style="display: block; margin-left: auto; margin-right: auto;" />
 		<article class="card card-product-list">
 			<div class="card-body">
 			<div class="row">
 				<aside class="col-sm-4">
-					<a href="#" class="img-wrap"><img src="images/products/bmw_i8_logo.png"></a>
+					<a href="#" class="img-wrap"><img src=${product.getProductLogo()}></a>
 				</aside> <!-- col.// -->
 				<div class="col-sm-8">
-						<a href="#" class="title mt-2 h5">BMW I8</a>
+						<p class="title mt-2 h5">${product.getLabel()}</p>
 						<div class="d-flex mb-3">
 							<div class="price-wrap mr-4">
-								<span class="price h5">$120,000.00</span>	
+								<span class="price h5">$${product.getPrice()}</span>
 							</div> <!-- price-dewrap // -->
 						</div>
 						
 						<ul class="list-bullet">
-							<li>V8</li>
-							<li>Truc super cool</li>
-							<li>Va très vite</li>
+							<li>${product.getDescription()}</li>
 						</ul>
 		
 						<div class="form-row">
@@ -70,7 +76,7 @@
 		</article>
 
 	</main> <!-- col.// -->
-
+	</c:forEach>
 </div>
 
 </div> <!-- container .//  -->

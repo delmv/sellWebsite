@@ -26,11 +26,7 @@ public class WelcomeController {
         return "integrated:page-index-3";
     }
 
-    @RequestMapping(value = "/products", method = RequestMethod.GET)
-    public String products(Model model){
-        model.addAttribute("title", "Products");
-        return "integrated:page-listing-large-prod";
-    }
+
     @RequestMapping(value = "/myAccount",method = RequestMethod.GET)
     public String myAccount(Model model){
         model.addAttribute("title", "My Account");
@@ -41,6 +37,7 @@ public class WelcomeController {
         model.addAttribute("title", "Shopping Cart");
         return "integrated:page-shopping-cart";
     }
+
 
 
 }
