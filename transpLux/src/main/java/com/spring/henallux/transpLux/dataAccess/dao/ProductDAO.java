@@ -48,4 +48,14 @@ public class ProductDAO implements ProductAccessDAO {
     public ArrayList<Product> findAllProducts() throws EmptyProductListException {
         return findProductByCategory(null);
     }
+
+    @Override
+    public Product findProductById(Integer id) throws Exception {
+
+        ProductEntity productEntity =  productRepository.findProductEntityById(id);
+
+        if (productEntity == null) throw new Exception();
+
+        return productConverter.productEntityToProductModel(productEntity);
+    }
 }

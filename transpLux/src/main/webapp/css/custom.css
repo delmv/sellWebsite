@@ -4,3 +4,8 @@
 .errorMessage{
     color: red;
 }
+
+.addToCartButton {
+    background-color: white;
+    border: none;
+}

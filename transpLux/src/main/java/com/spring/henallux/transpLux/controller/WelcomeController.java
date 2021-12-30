@@ -1,8 +1,6 @@
 package com.spring.henallux.transpLux.controller;
 
 import com.spring.henallux.transpLux.Constants;
-import com.spring.henallux.transpLux.dataAccess.dao.CategoryDAO;
-import com.spring.henallux.transpLux.dataAccess.dao.ProductDAO;
 import com.spring.henallux.transpLux.model.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;
