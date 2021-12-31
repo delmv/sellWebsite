@@ -5,6 +5,30 @@
 <html lang="en">
 <body>
 
+<nav class="navbar navbar-expand-md bg-dark navbar-dark">
+    <!-- Brand -->
+    <a class="navbar-brand" href="#">Categories</a>
+
+    <!-- Toggler/collapsibe Button -->
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <!-- Navbar links -->
+    <div class="collapse navbar-collapse" id="collapsibleNavbar">
+        <ul class="navbar-nav">
+            <li class="nav-item">
+                <a class="nav-link" href="/transpLux/products/all">All</a>
+            </li>
+            <c:forEach var="category" items="${categories}">
+                <li class="nav-item">
+                    <a class="nav-link" href="/transpLux/products/${category.getDefaultName()}">${category.getDefaultName()}</a>
+                </li>
+            </c:forEach>
+        </ul>
+    </div>
+</nav>
+
 <!-- ========================= SECTION PAGETOP ========================= -->
 <section class="section-pagetop bg">
     <div class="container">

@@ -1,6 +1,7 @@
 package com.spring.henallux.transpLux.controller;
 
 import com.spring.henallux.transpLux.Constants;
+import com.spring.henallux.transpLux.dataAccess.dao.CategoryDAO;
 import com.spring.henallux.transpLux.dataAccess.dao.ProductDAO;
 import com.spring.henallux.transpLux.model.*;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,10 +16,12 @@ import java.util.ArrayList;
 public class ProductsController {
 
     private ProductDAO productDAO;
+    private CategoryDAO categoryDAO;
 
     @Autowired
-    public ProductsController(ProductDAO productDAO){
+    public ProductsController(ProductDAO productDAO, CategoryDAO categoryDAO){
         this.productDAO = productDAO;
+        this.categoryDAO = categoryDAO;
     }
 
     @ModelAttribute(Constants.CURRENT_USER)
@@ -31,8 +34,10 @@ public class ProductsController {
         model.addAttribute("title", "Products");
         boolean noCategory = category.equals("all");
         model.addAttribute("noCategory",noCategory);
+        model.addAttribute("categories", categoryDAO.findAllCategory());
 
-        try {
+
+       try {
             ArrayList<Product> products;
             if(noCategory)
                 products = productDAO.findAllProducts();
