@@ -37,7 +37,7 @@ public class LoginController {
     public String login(Model model){
         model.addAttribute("title", "Login");
         model.addAttribute("loginForm",new LoginForm());
-        return "integrated:page-user-login";
+        return "integrated:login";
     }
 
     @RequestMapping(value = "/send", method = RequestMethod.POST)
@@ -50,13 +50,13 @@ public class LoginController {
                 model.addAttribute(Constants.CURRENT_USER, loggedUser);
             } catch (Exception e) {
                 System.out.println(e);
-                return "integrated:page-user-login";
+                return "integrated:login";
             }
 
             return "redirect:/";
         } else {
             System.out.println("aie");
-            return "integrated:page-user-login";
+            return "integrated:login";
         }
     }
 }

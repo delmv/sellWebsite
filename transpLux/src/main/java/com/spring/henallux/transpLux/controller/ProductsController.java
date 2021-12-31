@@ -42,7 +42,7 @@ public class ProductsController {
             model.addAttribute("products", products);
             model.addAttribute("quantity", new Quantity());
 
-            return "integrated:page-listing-large";
+            return "integrated:listing-products";
         }catch(Exception e){
             System.out.println(e);
             return "redirect:/";

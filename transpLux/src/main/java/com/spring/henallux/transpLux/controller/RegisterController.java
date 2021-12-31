@@ -33,7 +33,7 @@ public class RegisterController {
     public String register(Model model){
         model.addAttribute("title", "Register");
         model.addAttribute("registerForm", new User());
-        return "integrated:page-user-register";
+        return "integrated:register";
     }
 
     @RequestMapping(value = "/send", method = RequestMethod.POST)
@@ -46,11 +46,11 @@ public class RegisterController {
                 return "redirect:/";
             }catch(Exception e){
                 System.out.println(e);
-                return "integrated:page-user-register";
+                return "integrated:register";
             }
         } else {
             System.out.println("aie");
-            return "integrated:page-user-register";
+            return "integrated:register";
         }
     }
 }

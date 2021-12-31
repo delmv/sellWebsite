@@ -73,16 +73,16 @@ $(document).ready(function() {
 <div class="col-lg-4 col-sm-6 col-12">
 		<div class="widgets-wrap float-md-right">
 			<div class="widget-header  mr-3">
-				<a href="page-shopping-cart.jsp" class="icon icon-sm rounded-circle border"><i class="fa fa-shopping-cart"></i></a>
+				<a href="shopping-cart.jsp" class="icon icon-sm rounded-circle border"><i class="fa fa-shopping-cart"></i></a>
 				<span class="badge badge-pill badge-danger notify">0</span>
 			</div>
 			<div class="widget-header icontext">
-				<a href="page-profile-main.jsp" class="icon icon-sm rounded-circle border"><i class="fa fa-user"></i></a>
+				<a href="account.jsp" class="icon icon-sm rounded-circle border"><i class="fa fa-user"></i></a>
 				<div class="text">
 					<span class="text-muted">Welcome!</span>
 					<div> 
-						<a href="page-user-login.jsp">Sign in</a> |
-						<a href="page-user-register.jsp"> Register</a>
+						<a href="login.jsp">Sign in</a> |
+						<a href="register.jsp"> Register</a>
 					</div>
 				</div>
 			</div>
@@ -288,7 +288,7 @@ $(document).ready(function() {
 				<option>Cheapest</option>
 			</select>
 			<div class="btn-group">
-				<a href="page-listing-large.jsp" class="btn btn-outline-secondary" data-toggle="tooltip" title="List view">
+				<a href="listing-products.jsp" class="btn btn-outline-secondary" data-toggle="tooltip" title="List view">
 					<i class="fa fa-bars"></i></a>
 				<a href="page-listing-grid.jsp" class="btn  btn-outline-secondary active" data-toggle="tooltip" title="Grid view">
 					<i class="fa fa-th"></i></a>

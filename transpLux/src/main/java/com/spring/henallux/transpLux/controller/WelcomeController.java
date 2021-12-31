@@ -35,22 +35,26 @@ public class WelcomeController {
         model.addAttribute("firstName",user.getFirstName());
         model.addAttribute("categories", categoryDAO.findAllCategory());
         System.out.println(user.getFirstName());
-        return "integrated:page-index-3";
+        return "integrated:home";
     }
 
 
     @RequestMapping(value = "/myAccount",method = RequestMethod.GET)
     public String myAccount(Model model){
         model.addAttribute("title", "My Account");
-        return "integrated:page-profile-main";
+        return "integrated:account";
     }
     @RequestMapping(value = "/shoppingCart",method = RequestMethod.GET)
     public String shoppingCart(Model model){
         model.addAttribute("title", "Shopping Cart");
-        return "integrated:page-shopping-cart";
+        return "integrated:shopping-cart";
     }
 
-
+    @RequestMapping(value = "/aboutus",method = RequestMethod.GET)
+    public String aboutUse(Model model){
+        model.addAttribute("title", "About Us");
+        return "integrated:about-us";
+    }
 
 
 }

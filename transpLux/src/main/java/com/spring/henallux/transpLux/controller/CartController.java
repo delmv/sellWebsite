@@ -41,7 +41,7 @@ public class CartController {
 
         model.addAttribute("items", items);
 
-        return "integrated:page-shopping-cart";
+        return "integrated:shopping-cart";
     }
 
     @RequestMapping(value = "/addToCart/{productId}", method = RequestMethod.POST)
@@ -49,7 +49,7 @@ public class CartController {
 
         if (errors.hasErrors()) {
 
-            return "integrated:page-listing-large-prod";
+            return "integrated:listing-products";
 
         }
 
@@ -62,6 +62,6 @@ public class CartController {
             System.out.println("Erreur lors du parse");
         }
 
-        return "integrated:page-listing-large-prod";
+        return "integrated:listing-products";
     }
 }
