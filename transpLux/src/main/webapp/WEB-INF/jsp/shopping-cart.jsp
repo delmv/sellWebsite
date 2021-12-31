@@ -38,7 +38,7 @@
 
 		<td>
 			<figure class="itemside">
-				<div class="aside"><img src="${item.product.productLogo}" class="img-sm"></div>
+				<div class="aside"><img src='<spring:url value="${item.product.getProductLogo()}" />' class="img-sm"></div>
 				<figcaption class="info">
 					<span class="title text-dark">${item.product.label}</span>
 					<p class="text-muted small">${item.product.description}</p>

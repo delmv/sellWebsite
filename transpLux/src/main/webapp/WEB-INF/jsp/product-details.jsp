@@ -27,12 +27,12 @@
 <div class="row">
 	<main class="col-md-9">
 
-		<img src=${product.getProductImage()}  height="200dp" style="display: block; margin-left: auto; margin-right: auto;" />
+		<img src='<spring:url value="${product.getProductImage()}" />'  height="200dp" style="display: block; margin-left: auto; margin-right: auto;" />
 		<article class="card card-product-list">
 			<div class="card-body">
 			<div class="row">
 				<aside class="col-sm-4">
-					<a href="#" class="img-wrap"><img src=${product.getProductLogo()}></a>
+					<a href="#" class="img-wrap"><img src='<spring:url value="${product.getProductLogo()}" />'></a>
 				</aside> <!-- col.// -->
 				<div class="col-sm-8">
 						<p class="title mt-2 h5">${product.getLabel()}</p>

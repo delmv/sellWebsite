@@ -35,7 +35,7 @@
             <article class="card card-product-list">
                 <div class="row no-gutters">
                     <aside class="col-md-3">
-                        <a href="./details/${product.getId()}" class="img-wrap"><img src=${product.getProductImage()}></a>
+                        <a href="./details/${product.getId()}" class="img-wrap"><img src='<spring:url value="${product.getProductImage()}" />' ></a>
                     </aside> <!-- col.// -->
                     <div class="col-md-6">
                         <div class="info-main">
