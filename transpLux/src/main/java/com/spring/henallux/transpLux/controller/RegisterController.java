@@ -42,7 +42,6 @@ public class RegisterController {
                               final BindingResult errors) {
         if (!errors.hasErrors() && user.getPassword().equals(user.getRepeatPassword())) {
             try {
-
                 userDataAccess.setUser(user);
                 return "redirect:/";
             }catch(Exception e){

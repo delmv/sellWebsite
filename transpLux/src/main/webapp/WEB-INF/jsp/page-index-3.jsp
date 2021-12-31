@@ -98,7 +98,7 @@
 	<div class="container">
 
 		<header class="section-heading">
-			<a href="page-listing-grid.html" class="btn btn-outline-primary float-right">See all</a>
+			<a href="./products/all" class="btn btn-outline-primary float-right">See all</a>
 			<h3 class="section-title">Popular products</h3>
 		</header><!-- sect-heading -->
 

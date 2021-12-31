@@ -1,29 +1,21 @@
-package com.spring.henallux.transpLux.dataAccess.entity;
+package com.spring.henallux.transpLux.model;
 
-import javax.persistence.*;
 import java.util.Date;
 
-@Entity
-@Table(name = "promotion")
-public class PromotionEntity {
-    @Id
-    @Column(name = "id")
-    private Integer id;
+public class Promotion {
+    private int id;
 
-    @Column(name = "starting_date")
     private Date startingDate;
 
-    @Column(name = "ending_date")
     private Date endingDate;
 
-    @Column(name = "percentage")
-    private Integer percentage;
+    private int percentage;
 
-    public Integer getId() {
+    public int getId() {
         return id;
     }
 
-    public void setId(Integer id) {
+    public void setId(int id) {
         this.id = id;
     }
 
@@ -43,11 +35,11 @@ public class PromotionEntity {
         this.endingDate = endingDate;
     }
 
-    public Integer getPercentage() {
+    public int getPercentage() {
         return percentage;
     }
 
-    public void setPercentage(Integer percentage) {
+    public void setPercentage(int percentage) {
         this.percentage = percentage;
     }
 }

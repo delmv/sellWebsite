@@ -58,7 +58,7 @@
         <div class="container">
             <div class="row align-items-center">
                 <div class="col-lg-2 col-4">
-                    <a href='<spring:url value="home"/>' class="brand-wrap">
+                    <a href='<spring:url value="/"/>' class="brand-wrap">
                         <img class="logo" src='<spring:url value="/images/logos/Sans titre-2.png"/>' width="60%" height="60%">
                     </a> <!-- brand-wrap.// -->
                 </div>

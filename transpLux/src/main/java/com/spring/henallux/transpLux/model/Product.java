@@ -1,5 +1,7 @@
 package com.spring.henallux.transpLux.model;
 
+import java.util.Date;
+
 public class Product {
     private int id;
 
@@ -9,7 +11,7 @@ public class Product {
 
     private Double price;
 
-    private Integer promotion;
+    private Promotion promotion;
 
     private Category category;
 
@@ -22,6 +24,15 @@ public class Product {
     public Product() {
     }
 
+    public double getCurrentPrice(){
+        Date today = new Date();
+        if(promotion != null &&
+                promotion.getStartingDate().compareTo(today) <= 0 &&
+                promotion.getEndingDate().compareTo(today) >= 0){
+            return price*(1 - (double)promotion.getPercentage()/100);
+        }
+        return price;
+    }
     public int getId() {
         return id;
     }
@@ -54,14 +65,6 @@ public class Product {
         this.price = price;
     }
 
-    public Integer getPromotion() {
-        return promotion;
-    }
-
-    public void setPromotion(Integer promotion) {
-        this.promotion = promotion;
-    }
-
     public Category getCategory() {
         return category;
     }
@@ -92,5 +95,13 @@ public class Product {
 
     public void setProductLogo(String productLogo) {
         this.productLogo = productLogo;
+    }
+
+    public Promotion getPromotion() {
+        return promotion;
+    }
+
+    public void setPromotion(Promotion promotion) {
+        this.promotion = promotion;
     }
 }

@@ -25,7 +25,7 @@ public class ProductEntity {
     private String productLogo;
 
     @JoinColumn(name = "promotion_id", referencedColumnName = "id")
-    @ManyToOne
+    @OneToOne
     private PromotionEntity promotion;
 
     @JoinColumn(name = "category_id", referencedColumnName = "id")

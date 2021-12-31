@@ -1,18 +1,13 @@
 package com.spring.henallux.transpLux.controller;
 
 import com.spring.henallux.transpLux.Constants;
-import com.spring.henallux.transpLux.dataAccess.dao.ProductAccessDAO;
 import com.spring.henallux.transpLux.dataAccess.dao.ProductDAO;
-import com.spring.henallux.transpLux.exceptions.EmptyProductListException;
 import com.spring.henallux.transpLux.model.*;
-import org.hibernate.cache.spi.support.AbstractReadWriteAccess;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
-import javax.validation.Valid;
 import java.util.ArrayList;
 @Controller
 @SessionAttributes({Constants.CURRENT_USER})
@@ -31,8 +26,8 @@ public class ProductsController {
         return new User();
     }
 
-    @RequestMapping(value = "/{category}", method = RequestMethod.GET)
-    public String products(@PathVariable String category,Model model) {
+   @RequestMapping(value = "/{category}",method = RequestMethod.GET)
+    public String test(@PathVariable String category,Model model) {
         model.addAttribute("title", "Products");
         boolean noCategory = category.equals("all");
         model.addAttribute("noCategory",noCategory);
@@ -47,13 +42,26 @@ public class ProductsController {
             model.addAttribute("products", products);
             model.addAttribute("quantity", new Quantity());
 
-            return "integrated:page-listing-large-prod";
+            return "integrated:page-listing-large";
         }catch(Exception e){
             System.out.println(e);
             return "redirect:/";
         }
     }
+    @RequestMapping(value = "/details/{id}",method = RequestMethod.GET)
+    public String details(@PathVariable String id,Model model) {
+        model.addAttribute("title", "Product Details");
+        try {
+            Product product = productDAO.findProductById(Integer.parseInt(id));
 
+            model.addAttribute("product", product);
+            model.addAttribute("quantity", new Quantity());
 
+            return "integrated:product-details";
+        }catch(Exception e){
+            System.out.println(e);
+            return "redirect:/";
+        }
+    }
 
 }
