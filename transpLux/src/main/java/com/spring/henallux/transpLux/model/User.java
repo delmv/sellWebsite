@@ -1,9 +1,6 @@
 package com.spring.henallux.transpLux.model;
 
-import javax.validation.constraints.Email;
-import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Size;
+import javax.validation.constraints.*;
 
 public class User {
     private int id;
@@ -28,12 +25,20 @@ public class User {
     private String country;
 
     @NotNull
-    @Size(min=5, max = 15)
+    @Size(min=5, max = 20)
     private String password;
 
     @NotNull
-    @Size(min=5, max = 15)
-    private String repeatPassword;
+    @Digits(integer = 10, fraction = 0)
+    private Integer zipCode;
+
+    @NotBlank
+    private String address;
+
+    @NotBlank
+    private String phone;
+
+    private String favoriteAnimal;
 
     public User() { }
 
@@ -102,11 +107,36 @@ public class User {
         this.password = password;
     }
 
-    public String getRepeatPassword() {
-        return repeatPassword;
+
+    public String getFavoriteAnimal() {
+        return favoriteAnimal;
     }
 
-    public void setRepeatPassword(String repeatPassword) {
-        this.repeatPassword = repeatPassword;
+    public void setFavoriteAnimal(String favoriteAnimal) {
+        this.favoriteAnimal = favoriteAnimal;
+    }
+
+    public String getAddress() {
+        return address;
+    }
+
+    public void setAddress(String address) {
+        this.address = address;
+    }
+
+    public Integer getZipCode() {
+        return zipCode;
+    }
+
+    public void setZipCode(Integer zipCode) {
+        this.zipCode = zipCode;
+    }
+
+    public String getPhone() {
+        return phone;
+    }
+
+    public void setPhone(String phone) {
+        this.phone = phone;
     }
 }

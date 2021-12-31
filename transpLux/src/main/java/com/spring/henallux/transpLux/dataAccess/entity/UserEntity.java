@@ -31,6 +31,18 @@ public class UserEntity {
     @Column(name = "password")
     private String password;
 
+    @Column(name = "zip_code")
+    private Integer zipCode;
+
+    @Column(name = "address")
+    private String address;
+
+    @Column(name = "favorite_animal")
+    private String favoriteAnimal;
+
+    @Column(name = "phone")
+    private String phone;
+
     public String getEmail() {
         return email;
     }
@@ -85,5 +97,37 @@ public class UserEntity {
 
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    public Integer getZipCode() {
+        return zipCode;
+    }
+
+    public void setZipCode(Integer zipCode) {
+        this.zipCode = zipCode;
+    }
+
+    public String getAddress() {
+        return address;
+    }
+
+    public void setAddress(String address) {
+        this.address = address;
+    }
+
+    public String getFavoriteAnimal() {
+        return favoriteAnimal;
+    }
+
+    public void setFavoriteAnimal(String favoriteAnimal) {
+        this.favoriteAnimal = favoriteAnimal;
+    }
+
+    public String getPhone() {
+        return phone;
+    }
+
+    public void setPhone(String phone) {
+        this.phone = phone;
     }
 }

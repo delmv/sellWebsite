@@ -19,14 +19,14 @@
                 <div class="form-row">
                     <div class="col form-group">
                         <form:label path="firstName">
-                            <spring:message code="firstNameLabel"/>
+                            <spring:message code="firstNameLabel"/>*
                         </form:label>
                         <form:input type="text" class="form-control" placeholder="" path="firstName"/>
                         <form:errors path="firstName" element="div"/>
                     </div> <!-- form-group end.// -->
                     <div class="col form-group">
                         <form:label path="lastName">
-                            <spring:message code="lastNameLabel"/>
+                            <spring:message code="lastNameLabel"/>*
                         </form:label>
                         <form:input path="lastName" type="text" class="form-control" placeholder=""/>
                             <form:errors path="lastName" element="div"/>
@@ -37,7 +37,7 @@
 
                 <div class="form-group">
                     <form:label path="email">
-                        <spring:message code="emailLabel"/>
+                        <spring:message code="emailLabel"/>*
                     </form:label>
                     <form:input path="email" type="email" class="form-control" placeholder=""/>
                     <form:errors path="email" element="div"/>
@@ -45,6 +45,10 @@
                 </div>
                 <!-- form-group end.// -->
                 <div class="form-group">
+                    <form:label path="">
+                        <spring:message code="genderLabel"/>*
+                    </form:label>
+                    <br>
                     <spring:message code="manLabel" var="manLabel"/>
                     <spring:message code="womanLabel" var="womanLabel"/>
 
@@ -58,8 +62,28 @@
                 <!-- form-group end.// -->
                 <div class="form-row">
                     <div class="form-group col-md-6">
+                        <form:label path="address">
+                            <spring:message code="addressLabel"/>*
+                        </form:label>
+                        <form:input path="address" type="text" class="form-control"/>
+                        <form:errors path="address" element="div"/>
+
+                    </div> <!-- form-group end.// -->
+                    <div class="form-group col-md-6">
+                        <form:label path="zipCode">
+                            <spring:message code="zipCodeLabel"/>*
+                        </form:label>
+                        <form:input path="zipCode" type="text" class="form-control"/>
+                        <form:errors path="zipCode" element="div"/>
+                    </div> <!-- form-group end.// -->
+                </div>
+                <!-- form-row.// -->
+
+                <!-- form-group end.// -->
+                <div class="form-row">
+                    <div class="form-group col-md-6">
                         <form:label path="city">
-                            <spring:message code="cityLabel"/>
+                            <spring:message code="cityLabel"/>*
                         </form:label>
                         <form:input path="city" type="text" class="form-control"/>
                         <form:errors path="city" element="div"/>
@@ -67,7 +91,7 @@
                     </div> <!-- form-group end.// -->
                     <div class="form-group col-md-6">
                         <form:label path="country">
-                            <spring:message code="countryLabel"/>
+                            <spring:message code="countryLabel"/>*
                         </form:label>
                         <form:select id="inputState" class="form-control" path="country">
                             <form:option value=""> Choose...</form:option>
@@ -80,23 +104,30 @@
                         <form:errors path="country" element="div"/>
                     </div> <!-- form-group end.// -->
                 </div>
-                <!-- form-row.// -->
                 <div class="form-row">
                     <div class="form-group col-md-6">
-                        <form:label path="password">
-                            <spring:message code="createPasswordLabel"/>
+                        <form:label path="phone">
+                            <spring:message code="phoneLabel"/>*
                         </form:label>
-                        <form:input path="password" class="form-control" type="password"/>
-                        <form:errors path="password" element="div"/>
+                        <form:input path="phone" type="tel" class="form-control"/>
+                        <form:errors path="phone" element="div"/>
 
                     </div> <!-- form-group end.// -->
                     <div class="form-group col-md-6">
-                        <form:label path="repeatPassword">
-                            <spring:message code="repeatPasswordLabel"/>
+                        <form:label path="favoriteAnimal">
+                            <spring:message code="favoriteAnimalLabel"/>
                         </form:label>
-                        <form:input path="repeatPassword" type="password" class="form-control"/>
-                        <form:errors path="repeatPassword" element="div"/>
+                        <form:input path="favoriteAnimal" type="text" class="form-control"/>
+                        <form:errors path="favoriteAnimal" element="div"/>
                     </div> <!-- form-group end.// -->
+                </div>
+                <!-- form-row.// -->
+                <div class="form-group">
+                    <form:label path="password">
+                        <spring:message code="createPasswordLabel"/>*
+                    </form:label>
+                    <form:input path="password" class="form-control" type="password"/>
+                    <form:errors path="password" element="div"/>
                 </div>
                 <div class="form-group">
                     <form:button type="submit" class="btn btn-primary btn-block">

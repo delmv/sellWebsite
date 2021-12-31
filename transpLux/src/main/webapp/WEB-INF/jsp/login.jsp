@@ -19,14 +19,14 @@
                 modelAttribute="loginForm">
           <div class="form-group">
               <form:label path="email">
-                  <spring:message code="emailLabel"/>
+                  <spring:message code="emailLabel"/>*
               </form:label>
               <form:input path="email" type="email" class="form-control" placeholder=""/>
               <form:errors path="email" element="div"/>
           </div> <!-- form-group// -->
           <div class="form-group">
               <form:label path="password">
-                  <spring:message code="passwordLabel"/>
+                  <spring:message code="passwordLabel"/>*
               </form:label>
               <form:input path="password" class="form-control" type="password"/>
               <form:errors path="password" element="div"/>
