@@ -78,7 +78,7 @@
                     <div class="widgets-wrap float-md-right">
                         <div class="widget-header  mr-3">
                             <a href='<spring:url value="/cart"/>' class="icon icon-sm rounded-circle border"><i class="fa fa-shopping-cart"></i></a>
-                            <span class="badge badge-pill badge-danger notify">0</span>
+                            <span class="badge badge-pill badge-danger notify">${items.size()}</span>
                         </div>
                         <div class="widget-header icontext">
                             <a href='<spring:url value="myAccount"/>' class="icon icon-sm rounded-circle border"><i class="fa fa-user"></i></a>
