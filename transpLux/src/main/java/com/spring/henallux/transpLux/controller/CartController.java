@@ -40,6 +40,8 @@ public class CartController {
         items.addAll(cart.getProducts().values());
 
         model.addAttribute("items", items);
+        model.addAttribute("quantity", new Quantity());
+        model.addAttribute("nbItemsCart", cart.getProducts().size());
 
         return "integrated:shopping-cart";
     }
@@ -63,5 +65,53 @@ public class CartController {
         }
 
         return "integrated:listing-products";
+    }
+
+    @RequestMapping(value = "/changeQuantity/{productId}", method = RequestMethod.POST)
+    public String changeQuantity(Model model,
+                                 @PathVariable String productId,
+                                 @Valid @ModelAttribute(value = "quantity")Quantity quantity,
+                                 @ModelAttribute(value = Constants.CART) Cart cart,
+                                 final BindingResult errors) {
+
+        if (errors.hasErrors()) {
+            return "integrated:shopping-cart";
+        }
+
+        int productIdInt = Integer.parseInt(productId);
+        System.out.println(productIdInt);
+
+        if (cart.getProducts().containsKey(productIdInt)) {
+            cart.getProducts().get(productIdInt).setQuantity(quantity.getNumber());
+        }
+
+        ArrayList<CartItem> items = new ArrayList<CartItem>();
+        items.addAll(cart.getProducts().values());
+
+        model.addAttribute("items", items);
+
+        return "integrated:shopping-cart";
+    }
+
+    @RequestMapping(value = "/remove/{productId}", method = RequestMethod.POST)
+    public String removeItem(Model model,
+                             @PathVariable String productId,
+                             @ModelAttribute(value = Constants.CART) Cart cart) {
+
+        int productIdInt = Integer.parseInt(productId);
+        System.out.println(productIdInt);
+
+        if (cart.getProducts().containsKey(productIdInt)) {
+            cart.getProducts().remove(productIdInt);
+        }
+
+        ArrayList<CartItem> items = new ArrayList<CartItem>();
+        items.addAll(cart.getProducts().values());
+
+        model.addAttribute("items", items);
+        model.addAttribute("quantity", new Quantity());
+
+        return "integrated:shopping-cart";
+
     }
 }

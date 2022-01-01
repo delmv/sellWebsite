@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
 @Controller
-@SessionAttributes({Constants.CURRENT_USER})
+@SessionAttributes({Constants.CURRENT_USER, Constants.CART})
 @RequestMapping(value = "/products")
 public class ProductsController {
 
@@ -29,13 +29,18 @@ public class ProductsController {
         return new User();
     }
 
+    @ModelAttribute(Constants.CART)
+    public Cart cart() {
+        return new Cart();
+    }
+
    @RequestMapping(value = "/{category}",method = RequestMethod.GET)
-    public String test(@PathVariable String category,Model model) {
+    public String test(@PathVariable String category,Model model, @ModelAttribute(Constants.CART) Cart cart) {
         model.addAttribute("title", "Products");
         boolean noCategory = category.equals("all");
         model.addAttribute("noCategory",noCategory);
         model.addAttribute("categories", categoryDAO.findAllCategory());
-
+        model.addAttribute("nbItemsCart", cart.getProducts().size());
 
        try {
             ArrayList<Product> products;

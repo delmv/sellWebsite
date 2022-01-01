@@ -2,6 +2,8 @@ package com.spring.henallux.transpLux.controller;
 
 import com.spring.henallux.transpLux.Constants;
 import com.spring.henallux.transpLux.dataAccess.dao.CategoryDAO;
+import com.spring.henallux.transpLux.model.Cart;
+import com.spring.henallux.transpLux.model.CartItem;
 import com.spring.henallux.transpLux.model.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;
@@ -11,9 +13,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.SessionAttributes;
 
+import java.util.ArrayList;
+
 @Configuration
 @RequestMapping()
-@SessionAttributes({Constants.CURRENT_USER})
+@SessionAttributes({Constants.CURRENT_USER, Constants.CART})
 public class WelcomeController {
 
     private CategoryDAO categoryDAO;
@@ -23,6 +27,10 @@ public class WelcomeController {
         this.categoryDAO = categoryDAO;
     }
 
+    @ModelAttribute(Constants.CART)
+    public Cart cart() {
+        return new Cart();
+    }
 
     @ModelAttribute(Constants.CURRENT_USER)
     public User user(){
@@ -30,11 +38,11 @@ public class WelcomeController {
     }
 
     @RequestMapping(value="",method = RequestMethod.GET)
-    public String home(Model model,@ModelAttribute(value = Constants.CURRENT_USER) User user){
+    public String home(Model model,@ModelAttribute(value = Constants.CURRENT_USER) User user, @ModelAttribute(value = Constants.CART)Cart cart){
         model.addAttribute("title", "Welcome Page");
         model.addAttribute("firstName",user.getFirstName());
         model.addAttribute("categories", categoryDAO.findAllCategory());
-        System.out.println(user.getFirstName());
+        model.addAttribute("nbItemsCart", cart.getProducts().size());
         return "integrated:home";
     }
 

@@ -2,6 +2,7 @@ package com.spring.henallux.transpLux.controller;
 
 import com.spring.henallux.transpLux.Constants;
 import com.spring.henallux.transpLux.dataAccess.dao.UserDataAccess;
+import com.spring.henallux.transpLux.model.Cart;
 import com.spring.henallux.transpLux.model.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -15,7 +16,7 @@ import javax.validation.Valid;
 
 @Controller
 @RequestMapping(value = "/register")
-@SessionAttributes({Constants.CURRENT_USER})
+@SessionAttributes({Constants.CURRENT_USER, Constants.CART})
 public class RegisterController {
 
     private UserDataAccess userDataAccess;
@@ -24,15 +25,23 @@ public class RegisterController {
     public RegisterController(UserDataAccess userDataAccess){
         this.userDataAccess = userDataAccess;
     }
+
     @ModelAttribute(Constants.CURRENT_USER)
     public User user(){
         return new User();
     }
 
+    @ModelAttribute(Constants.CART)
+    public Cart cart() {
+        return new Cart();
+    }
+
     @RequestMapping(method = RequestMethod.GET)
-    public String register(Model model){
+    public String register(Model model, @ModelAttribute(value = Constants.CART) Cart cart){
         model.addAttribute("title", "Register");
         model.addAttribute("registerForm", new User());
+        model.addAttribute("nbItemsCart", cart.getProducts().size());
+
         return "integrated:register";
     }
 

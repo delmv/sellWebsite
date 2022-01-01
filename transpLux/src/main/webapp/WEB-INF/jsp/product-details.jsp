@@ -58,7 +58,7 @@
 										<div class="input-group-prepend">
 											<span style="padding-top: 10%">Quantity⠀</span>
 										</div>
-										<form:input type="number" min="1" max="5" class="form-control" style="min-width: 60px" path="number" data-dashlane-rid="bdb8e614781bb362" data-form-type="other" />
+										<form:input type="number" min="1" class="form-control" style="min-width: 60px" path="number" data-dashlane-rid="bdb8e614781bb362" data-form-type="other" />
 										<form:errors path="number"/>
 									</div>  <!-- input-spinner.// -->
 								</div> <!-- col.// -->

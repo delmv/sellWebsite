@@ -27,7 +27,8 @@
 <tr class="small text-uppercase">
   <th scope="col">Product</th>
   <th scope="col" width="120">Quantity</th>
-  <th scope="col" width="120">Price</th>
+  <th scope="col" width="120">Apply quantity</th>
+	<th scope="col">Price</th>
   <th scope="col" class="text-right" width="200"> </th>
 </tr>
 </thead>
@@ -45,24 +46,32 @@
 				</figcaption>
 			</figure>
 		</td>
+		<form:form
+				action="/transpLux/cart/changeQuantity/${item.product.id}"
+				method="POST"
+				modelAttribute="quantity">
 		<td>
-			<select class="form-control" value="${item.quantity}">
-				<option>1</option>
-				<option>2</option>
-				<option>3</option>
-				<option>4</option>
-				<option>5</option>
-			</select>
+				<form:input type="number" min="1" class="form-control" value="${item.quantity}" style="min-width: 60px" path="number" data-dashlane-rid="bdb8e614781bb362" data-form-type="other" />
 		</td>
+		<td>
+			<form:button class="addToCartButton">
+				<span class="btn btn-light"> Edit quantity</span>
+			</form:button>
+		</td>
+		</form:form>
 		<td>
 			<div class="price-wrap">
 				<var class="price">$${item.product.price * item.quantity}</var>
 				<small class="text-muted"> $${item.product.price} each </small>
 			</div> <!-- price-wrap .// -->
 		</td>
+		<form:form
+				method="POST"
+				action="/transpLux/cart/remove/${item.product.id}">
 		<td class="text-right">
-			<a href="" class="btn btn-light"> Remove</a>
+				<button class="addToCartButton"><span class="btn btn-light"> Remove</span></button>
 		</td>
+		</form:form>
 	</tr>
 
 </c:forEach>
