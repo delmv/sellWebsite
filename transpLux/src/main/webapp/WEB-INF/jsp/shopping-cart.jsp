@@ -33,7 +33,7 @@
 </tr>
 </thead>
 <tbody>
-<c:forEach var="item" items="${items}">
+<c:forEach var="item" items="${cart.products.values()}">
 
 	<tr>
 
@@ -79,7 +79,7 @@
 </table>
 
 <div class="card-body border-top">
-	<a href="_HTML-Components/_order.html" class="btn btn-primary float-md-right"> Make Purchase <i class="fa fa-chevron-right"></i> </a>
+	<a href="/transpLux/purchase" class="btn btn-primary float-md-right"> Make Purchase <i class="fa fa-chevron-right"></i> </a>
 	<a href="page-listing-grid.jsp" class="btn btn-light"> <i class="fa fa-chevron-left"></i> Continue shopping </a>
 </div>	
 </div> <!-- card.// -->
@@ -90,26 +90,12 @@
 
 	</main> <!-- col.// -->
 	<aside class="col-md-3">
-		<div class="card mb-3">
-			<div class="card-body">
-			<form>
-				<div class="form-group">
-					<label>Have coupon?</label>
-					<div class="input-group">
-						<input type="text" class="form-control" name="" placeholder="Coupon code">
-						<span class="input-group-append"> 
-							<button class="btn btn-primary">Apply</button>
-						</span>
-					</div>
-				</div>
-			</form>
-			</div> <!-- card-body.// -->
-		</div>  <!-- card .// -->
+
 		<div class="card">
 			<div class="card-body">
 					<dl class="dlist-align">
 					  <dt>Total price:</dt>
-					  <dd class="text-right">USD 568</dd>
+					  <dd class="text-right">${cart.getTotalPrice()}</dd>
 					</dl>
 					<dl class="dlist-align">
 					  <dt>Discount:</dt>
@@ -119,11 +105,6 @@
 					  <dt>Total:</dt>
 					  <dd class="text-right  h5"><strong>$1,650</strong></dd>
 					</dl>
-					<hr>
-					<p class="text-center mb-3">
-						<img src="images/misc/payments.png" height="26">
-					</p>
-					
 			</div> <!-- card-body.// -->
 		</div>  <!-- card .// -->
 	</aside> <!-- col.// -->

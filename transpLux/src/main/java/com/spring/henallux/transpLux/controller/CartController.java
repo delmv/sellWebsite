@@ -36,10 +36,8 @@ public class CartController {
 
     @RequestMapping(method = RequestMethod.GET)
     public String cart(Model model, @ModelAttribute(value = Constants.CART)Cart cart) {
-        ArrayList<CartItem> items = new ArrayList<CartItem>();
-        items.addAll(cart.getProducts().values());
 
-        model.addAttribute("items", items);
+        model.addAttribute("cart", cart);
         model.addAttribute("quantity", new Quantity());
         model.addAttribute("nbItemsCart", cart.getProducts().size());
 
@@ -85,10 +83,7 @@ public class CartController {
             cart.getProducts().get(productIdInt).setQuantity(quantity.getNumber());
         }
 
-        ArrayList<CartItem> items = new ArrayList<CartItem>();
-        items.addAll(cart.getProducts().values());
-
-        model.addAttribute("items", items);
+        model.addAttribute("cart", cart);
 
         return "integrated:shopping-cart";
     }
@@ -104,12 +99,8 @@ public class CartController {
         if (cart.getProducts().containsKey(productIdInt)) {
             cart.getProducts().remove(productIdInt);
         }
-
-        ArrayList<CartItem> items = new ArrayList<CartItem>();
-        items.addAll(cart.getProducts().values());
-
-        model.addAttribute("items", items);
         model.addAttribute("quantity", new Quantity());
+        model.addAttribute("cart", cart);
 
         return "integrated:shopping-cart";
 

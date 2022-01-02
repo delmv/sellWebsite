@@ -31,4 +31,11 @@ public class Cart {
     public void setProducts(HashMap<Integer, CartItem> products) {
         this.products = products;
     }
+
+    public double getTotalPrice() {
+
+        return products.values().stream().mapToDouble(p -> p.getProduct().getPrice() * p.getQuantity()).sum();
+
+    }
+
 }
