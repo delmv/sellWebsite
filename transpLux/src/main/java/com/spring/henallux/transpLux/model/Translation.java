@@ -12,6 +12,7 @@ public class Translation {
     public Translation() {
     }
 
+
     public int getId() {
         return id;
     }

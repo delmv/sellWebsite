@@ -1,8 +1,9 @@
 package com.spring.henallux.transpLux.dataAccess.entity;
 
-import org.hibernate.annotations.IndexColumn;
+import com.spring.henallux.transpLux.model.Translation;
 
 import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.Collection;
 
 @Entity
@@ -33,7 +34,6 @@ public class CategoryEntity {
     public void setId(Integer id) {
         this.id = id;
     }
-
 
     public Collection<TranslationEntity> getTranslations() {
         return translations;
