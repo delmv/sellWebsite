@@ -1,12 +1,23 @@
 package com.spring.henallux.transpLux.model;
 
 public class Translation {
-    private Integer id;
+    private int id;
+
     private String name;
+
     private Language language;
+
     private Category category;
 
     public Translation() {
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 
     public String getName() {
@@ -23,14 +34,6 @@ public class Translation {
 
     public void setLanguage(Language language) {
         this.language = language;
-    }
-
-    public Integer getId() {
-        return id;
-    }
-
-    public void setId(Integer id) {
-        this.id = id;
     }
 
     public Category getCategory() {

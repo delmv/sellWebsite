@@ -3,7 +3,6 @@ package com.spring.henallux.transpLux.controller;
 import com.spring.henallux.transpLux.Constants;
 import com.spring.henallux.transpLux.dataAccess.dao.CategoryDAO;
 import com.spring.henallux.transpLux.model.Cart;
-import com.spring.henallux.transpLux.model.CartItem;
 import com.spring.henallux.transpLux.model.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;
@@ -12,6 +11,8 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.SessionAttributes;
+
+import java.util.Locale;
 
 import java.util.ArrayList;
 
@@ -38,10 +39,11 @@ public class WelcomeController {
     }
 
     @RequestMapping(value="",method = RequestMethod.GET)
-    public String home(Model model,@ModelAttribute(value = Constants.CURRENT_USER) User user, @ModelAttribute(value = Constants.CART)Cart cart){
+    public String home(Model model, @ModelAttribute(value = Constants.CURRENT_USER) User user, @ModelAttribute(value = Constants.CART) Cart cart, Locale locale){
         model.addAttribute("title", "Welcome Page");
         model.addAttribute("firstName",user.getFirstName());
         model.addAttribute("categories", categoryDAO.findAllCategory());
+        model.addAttribute("locale",locale.getLanguage());
         model.addAttribute("nbItemsCart", cart.getProducts().size());
         return "integrated:home";
     }

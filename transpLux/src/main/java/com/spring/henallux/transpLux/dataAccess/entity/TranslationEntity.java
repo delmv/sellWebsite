@@ -6,18 +6,27 @@ import javax.persistence.*;
 @Table(name = "translation")
 public class TranslationEntity {
     @Id
+    @Column(name = "id")
     private Integer id;
 
-    @JoinColumn(name = "category_id", referencedColumnName = "id")
-    @ManyToOne
-    private CategoryEntity category;
+    @Column(name = "name")
+    private String name;
 
     @JoinColumn(name = "language_id", referencedColumnName = "id")
     @ManyToOne
     private LanguageEntity language;
 
-    @Column(name = "name")
-    private String name;
+    @JoinColumn(name = "category_id", referencedColumnName = "id")
+    @ManyToOne
+    private CategoryEntity category;
+
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
+    }
 
     public String getName() {
         return name;
@@ -27,15 +36,6 @@ public class TranslationEntity {
         this.name = name;
     }
 
-    public CategoryEntity getCategory() {
-        return category;
-    }
-
-    public void setCategory(CategoryEntity category) {
-        this.category = category;
-    }
-
-
     public LanguageEntity getLanguage() {
         return language;
     }
@@ -44,11 +44,11 @@ public class TranslationEntity {
         this.language = language;
     }
 
-    public Integer getId() {
-        return id;
+    public CategoryEntity getCategory() {
+        return category;
     }
 
-    public void setId(Integer id) {
-        this.id = id;
+    public void setCategory(CategoryEntity category) {
+        this.category = category;
     }
 }

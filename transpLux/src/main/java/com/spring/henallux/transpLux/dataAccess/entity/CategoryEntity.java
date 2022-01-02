@@ -1,9 +1,9 @@
 package com.spring.henallux.transpLux.dataAccess.entity;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import org.hibernate.annotations.IndexColumn;
+
+import javax.persistence.*;
+import java.util.Collection;
 
 @Entity
 @Table(name = "category")
@@ -14,6 +14,9 @@ public class CategoryEntity {
 
     @Column(name = "default_name")
     private String defaultName;
+
+    @OneToMany(mappedBy = "category",fetch = FetchType.LAZY)
+    private Collection<TranslationEntity> translations;
 
     public String getDefaultName() {
         return defaultName;
@@ -29,5 +32,14 @@ public class CategoryEntity {
 
     public void setId(Integer id) {
         this.id = id;
+    }
+
+
+    public Collection<TranslationEntity> getTranslations() {
+        return translations;
+    }
+
+    public void setTranslations(Collection<TranslationEntity> translations) {
+        this.translations = translations;
     }
 }

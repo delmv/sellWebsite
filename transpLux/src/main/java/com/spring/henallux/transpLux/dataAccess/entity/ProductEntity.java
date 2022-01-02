@@ -41,8 +41,6 @@ public class ProductEntity {
         this.label = label;
     }
 
-
-
     public PromotionEntity getPromotion() {
         return promotion;
     }

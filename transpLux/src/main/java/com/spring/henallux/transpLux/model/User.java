@@ -1,6 +1,7 @@
 package com.spring.henallux.transpLux.model;
 
 import javax.validation.constraints.*;
+import java.util.Collection;
 
 public class User {
     private int id;
@@ -139,4 +140,5 @@ public class User {
     public void setPhone(String phone) {
         this.phone = phone;
     }
+
 }

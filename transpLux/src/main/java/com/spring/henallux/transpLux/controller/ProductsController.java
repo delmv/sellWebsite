@@ -4,12 +4,15 @@ import com.spring.henallux.transpLux.Constants;
 import com.spring.henallux.transpLux.dataAccess.dao.CategoryDAO;
 import com.spring.henallux.transpLux.dataAccess.dao.ProductDAO;
 import com.spring.henallux.transpLux.model.*;
+import org.apache.tomcat.jni.Local;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
+import java.util.Locale;
+
 @Controller
 @SessionAttributes({Constants.CURRENT_USER, Constants.CART})
 @RequestMapping(value = "/products")
@@ -35,12 +38,13 @@ public class ProductsController {
     }
 
    @RequestMapping(value = "/{category}",method = RequestMethod.GET)
-    public String test(@PathVariable String category,Model model, @ModelAttribute(Constants.CART) Cart cart) {
+    public String test(@PathVariable String category, Model model, @ModelAttribute(Constants.CART) Cart cart, Locale locale) {
         model.addAttribute("title", "Products");
         boolean noCategory = category.equals("all");
         model.addAttribute("noCategory",noCategory);
         model.addAttribute("categories", categoryDAO.findAllCategory());
         model.addAttribute("nbItemsCart", cart.getProducts().size());
+       model.addAttribute("locale",locale.getLanguage());
 
        try {
             ArrayList<Product> products;
