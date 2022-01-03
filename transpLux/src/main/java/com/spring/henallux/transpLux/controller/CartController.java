@@ -35,11 +35,12 @@ public class CartController {
     }
 
     @RequestMapping(method = RequestMethod.GET)
-    public String cart(Model model, @ModelAttribute(value = Constants.CART)Cart cart) {
+    public String cart(Model model, @ModelAttribute(value = Constants.CART)Cart cart, @ModelAttribute(value = Constants.CURRENT_USER) User user) {
 
         model.addAttribute("cart", cart);
         model.addAttribute("quantity", new Quantity());
         model.addAttribute("nbItemsCart", cart.getProducts().size());
+        model.addAttribute("user", user);
 
         return "integrated:shopping-cart";
     }

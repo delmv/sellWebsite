@@ -79,9 +79,10 @@
 </table>
 
 <div class="card-body border-top">
-	<a href="/transpLux/purchase" class="btn btn-primary float-md-right"> Make Purchase <i class="fa fa-chevron-right"></i> </a>
-	<a href="page-listing-grid.jsp" class="btn btn-light"> <i class="fa fa-chevron-left"></i> Continue shopping </a>
-</div>	
+	<c:if test="${cart.getTotalPrice() > 0 && user.email != null}">
+		<a href="/transpLux/purchase" class="btn btn-primary float-md-right"> Make Purchase <i class="fa fa-chevron-right"></i> </a>
+	</c:if>
+</div>
 </div> <!-- card.// -->
 
 <div class="alert alert-success mt-3">

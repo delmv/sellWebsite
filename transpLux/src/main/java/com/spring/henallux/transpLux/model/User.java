@@ -4,6 +4,7 @@ import javax.validation.constraints.*;
 import java.util.Collection;
 
 public class User {
+
     private int id;
 
     @NotBlank()
@@ -42,7 +43,6 @@ public class User {
     private String favoriteAnimal;
 
     public User() { }
-
 
     public int getId() {
         return id;
