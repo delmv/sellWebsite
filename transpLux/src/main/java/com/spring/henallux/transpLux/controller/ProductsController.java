@@ -42,9 +42,21 @@ public class ProductsController {
         model.addAttribute("title", "Products");
         boolean noCategory = category.equals("all");
         model.addAttribute("noCategory",noCategory);
-        model.addAttribute("categories", categoryDAO.findAllCategory());
+
+        ArrayList<Category> categories = categoryDAO.findAllCategory();
+        Category currentCategory = null;
+
+        for (Category cat : categories) {
+            if (cat.getDefaultName().equals(category)) {
+                currentCategory = cat;
+                break;
+            }
+        }
+
+        model.addAttribute("categories", categories);
+        model.addAttribute("category", currentCategory);
         model.addAttribute("nbItemsCart", cart.getProducts().size());
-       model.addAttribute("locale",locale.getLanguage());
+        model.addAttribute("locale",locale.getLanguage());
 
        try {
             ArrayList<Product> products;
