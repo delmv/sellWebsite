@@ -62,17 +62,19 @@ public class CategoryConverter {
 
         Category category = mapper.map(categoryEntity, Category.class);
 
-        ArrayList<Translation> translationsModel = new ArrayList<>();
-        HashMap<String, String> trads = new HashMap<String, String>();
-        translations.forEach(t -> {
-            translationsModel.add(mapper.map(t, Translation.class));
-            String key = t.getLanguage().getName();
-            String value = t.getName();
-            trads.put(key, value);
-        });
+        if (translations != null) {
+            ArrayList<Translation> translationsModel = new ArrayList<>();
+            HashMap<String, String> trads = new HashMap<String, String>();
+            translations.forEach(t -> {
+                translationsModel.add(mapper.map(t, Translation.class));
+                String key = t.getLanguage().getName();
+                String value = t.getName();
+                trads.put(key, value);
+            });
 
-        category.setTranslations(translationsModel);
-        category.setTrads(trads);
+            category.setTranslations(translationsModel);
+            category.setTrads(trads);
+        }
 
         return category;
     }
