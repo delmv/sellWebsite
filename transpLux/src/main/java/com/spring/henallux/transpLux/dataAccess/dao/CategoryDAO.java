@@ -1,7 +1,9 @@
 package com.spring.henallux.transpLux.dataAccess.dao;
 
 import com.spring.henallux.transpLux.dataAccess.entity.CategoryEntity;
+import com.spring.henallux.transpLux.dataAccess.entity.LanguageEntity;
 import com.spring.henallux.transpLux.dataAccess.entity.ProductEntity;
+import com.spring.henallux.transpLux.dataAccess.entity.TranslationEntity;
 import com.spring.henallux.transpLux.dataAccess.repository.CategoryRepository;
 import com.spring.henallux.transpLux.dataAccess.util.CategoryConverter;
 import com.spring.henallux.transpLux.exceptions.EmptyProductListException;
@@ -29,6 +31,7 @@ public class CategoryDAO implements CategoryAccessDAO{
     @Override
     public ArrayList<Category> findAllCategory() {
         List<CategoryEntity> categoryEntities = categoryRepository.findAll();
+
         return (ArrayList<Category>) categoryEntities
                 .stream()
                 .map(categoryEntity -> categoryConverter.categoryEntityToCategoryModel(categoryEntity))
