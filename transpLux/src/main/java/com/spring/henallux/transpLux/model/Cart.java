@@ -38,4 +38,8 @@ public class Cart {
 
     }
 
+    public Boolean isEmpty() {
+        return products.isEmpty();
+    }
+
 }

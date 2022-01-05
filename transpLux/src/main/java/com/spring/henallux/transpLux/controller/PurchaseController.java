@@ -7,6 +7,7 @@ import com.spring.henallux.transpLux.model.LineItem;
 import com.spring.henallux.transpLux.model.Order;
 import com.spring.henallux.transpLux.model.User;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.jmx.export.annotation.ManagedOperation;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -40,7 +41,10 @@ public class PurchaseController {
     }
 
     @RequestMapping(method = RequestMethod.GET)
-    public String purchase(Model model) {
+    public String purchase(Model model, @ModelAttribute(value = Constants.CART) Cart cart) {
+
+        if (cart.isEmpty())
+                return "redirect:/fail";
 
         model.addAttribute("paypalButtonHidden", true);
 
