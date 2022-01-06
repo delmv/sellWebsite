@@ -1,11 +1,19 @@
 package com.spring.henallux.transpLux.model;
 
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+
 import javax.validation.constraints.*;
+import java.util.ArrayList;
 import java.util.Collection;
+import java.util.List;
 
-public class User {
 
-    private int id;
+public class User implements UserDetails {
+    @NotBlank
+    private String username;
 
     @NotBlank()
     private String firstName;
@@ -27,7 +35,7 @@ public class User {
     private String country;
 
     @NotNull
-    @Size(min=5, max = 20)
+    @Size(min=5, max = 2000)
     private String password;
 
     @NotNull
@@ -42,17 +50,20 @@ public class User {
 
     private String favoriteAnimal;
 
+    private String authorities;
+
+    private Boolean accountNonExpired;
+
     private int currentOrderId;
+
+    private Boolean accountNonLocked;
+
+    private Boolean credentialsNonExpired;
+
+    private Boolean enabled;
 
     public User() { }
 
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
-    }
 
     public String getFirstName() {
         return firstName;
@@ -141,6 +152,93 @@ public class User {
     public void setPhone(String phone) {
         this.phone = phone;
     }
+    @Override
+    public Collection<GrantedAuthority> getAuthorities() {
+        List<GrantedAuthority> grantedAuthorities = new ArrayList<>();
+
+        if (authorities != null && !authorities.isEmpty()) {
+            String[] authoritiesAsArray = authorities.split(",");
+
+            for (String authority : authoritiesAsArray) {
+                if (authority != null && !authority.isEmpty()) {
+                    grantedAuthorities.add(new SimpleGrantedAuthority(authority));
+                }
+            }
+        }
+
+        return grantedAuthorities;
+    }
+    @Override
+    public boolean isEnabled() {
+        return enabled;
+    }
+
+    @Override
+    public boolean isAccountNonExpired() {
+        return accountNonExpired;
+    }
+
+    @Override
+    public boolean isAccountNonLocked() {
+        return accountNonLocked;
+    }
+
+    public boolean isCredentialsNonExpired() {
+        return credentialsNonExpired;
+    }
+
+    @Override
+    public String getUsername() {
+        return username;
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
+    }
+
+    @Override
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
+    public void setAuthorities(String authorities) {
+        this.authorities = authorities;
+    }
+
+    public Boolean getAccountNonExpired() {
+        return accountNonExpired;
+    }
+
+    public void setAccountNonExpired(Boolean accountNonExpired) {
+        this.accountNonExpired = accountNonExpired;
+    }
+
+    public Boolean getAccountNonLocked() {
+        return accountNonLocked;
+    }
+
+    public void setAccountNonLocked(Boolean accountNonLocked) {
+        this.accountNonLocked = accountNonLocked;
+    }
+
+    public Boolean getCredentialsNonExpired() {
+        return credentialsNonExpired;
+    }
+
+    public void setCredentialsNonExpired(Boolean credentialsNonExpired) {
+        this.credentialsNonExpired = credentialsNonExpired;
+    }
+
+    public Boolean getEnabled() {
+        return enabled;
+    }
+
+    public void setEnabled(Boolean enabled) {
+        this.enabled = enabled;
 
     public int getCurrentOrderId() {
         return currentOrderId;

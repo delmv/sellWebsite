@@ -21,7 +21,7 @@
 			</li>
 			<c:forEach var="category" items="${categories}">
 				<li class="nav-item">
-					<a class="nav-link" href="./products/${category.getDefaultName()}">${category.getNameByLocal(locale)}</a>
+					<a class="nav-link" href="/transpLux/products/${category.getDefaultName()}">${category.getDefaultName()}</a>
 				</li>
 			</c:forEach>
 		</ul>

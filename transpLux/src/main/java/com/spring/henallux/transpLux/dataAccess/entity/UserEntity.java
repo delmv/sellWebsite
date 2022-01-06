@@ -10,7 +10,28 @@ import javax.persistence.Table;
 public class UserEntity {
 
     @Id
-    @Column(name = "email")
+    @Column (name = "username")
+    private String username;
+
+    @Column (name = "password")
+    private String password;
+
+    @Column (name = "authorities")
+    private String authorities = "ROLE_USER";
+
+    @Column (name = "non_expired")
+    private Boolean nonExpired= true;
+
+    @Column (name = "non_locked")
+    private Boolean nonLocked = true;
+
+    @Column (name = "credentials_non_expired")
+    private Boolean credentialsNonExpired = true;
+
+    @Column (name = "enable")
+    private Boolean enabled= true;
+
+    @Column(name = "email", unique = true)
     private String email;
 
     @Column(name = "first_name")
@@ -27,9 +48,6 @@ public class UserEntity {
 
     @Column(name = "country")
     private String country;
-
-    @Column(name = "password")
-    private String password;
 
     @Column(name = "zip_code")
     private Integer zipCode;
@@ -129,5 +147,53 @@ public class UserEntity {
 
     public void setPhone(String phone) {
         this.phone = phone;
+    }
+
+    public String getUsername() {
+        return username;
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
+    }
+
+    public String getAuthorities() {
+        return authorities;
+    }
+
+    public void setAuthorities(String authorities) {
+        this.authorities = authorities;
+    }
+
+    public Boolean getEnabled() {
+        return enabled;
+    }
+
+    public void setEnabled(Boolean enabled) {
+        this.enabled = enabled;
+    }
+
+    public Boolean getNonExpired() {
+        return nonExpired;
+    }
+
+    public void setNonExpired(Boolean nonExpired) {
+        this.nonExpired = nonExpired;
+    }
+
+    public Boolean getNonLocked() {
+        return nonLocked;
+    }
+
+    public void setNonLocked(Boolean nonLocked) {
+        this.nonLocked = nonLocked;
+    }
+
+    public Boolean getCredentialsNonExpired() {
+        return credentialsNonExpired;
+    }
+
+    public void setCredentialsNonExpired(Boolean credentialsNonExpired) {
+        this.credentialsNonExpired = credentialsNonExpired;
     }
 }

@@ -22,6 +22,7 @@ public class Category {
         this.id = id;
     }
 
+
     public String getDefaultName() {
         return defaultName;
     }
@@ -46,7 +47,15 @@ public class Category {
         this.trads = trads;
     }
 
+/*    public ArrayList<Translation> getTranslations() {
+        return translations;
+    }
+
+    public void setTranslations(ArrayList<Translation> translations) {
+        this.translations = translations;
+    }*/
     public String getNameByLocal(String local){
         return trads.get(local);
     }
+
 }

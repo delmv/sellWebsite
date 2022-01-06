@@ -34,14 +34,26 @@
                 </div>
                 <!-- form-row end.// -->
 
+                <div class="form-row">
+                    <div class="col form-group">
+                        <form:label path="email">
+                            <spring:message code="emailLabel"/>*
+                        </form:label>
+                        <form:input path="email" type="email" class="form-control" placeholder=""/>
+                        <form:errors path="email" element="div"/>
+                        <small class="form-text text-muted">We'll never share your email with anyone else.</small>
+                    </div> <!-- form-group end.// -->
+                    <div class="col form-group">
+                        <form:label path="username">
+                            <spring:message code="userNameLabel"/>*
+                        </form:label>
+                        <form:input path="username" type="text" class="form-control" placeholder=""/>
+                        <form:errors path="username" element="div"/>
+                    </div> <!-- form-group end.// -->
+                </div>
+                <!-- form-row end.// -->
 
                 <div class="form-group">
-                    <form:label path="email">
-                        <spring:message code="emailLabel"/>*
-                    </form:label>
-                    <form:input path="email" type="email" class="form-control" placeholder=""/>
-                    <form:errors path="email" element="div"/>
-                    <small class="form-text text-muted">We'll never share your email with anyone else.</small>
                 </div>
                 <!-- form-group end.// -->
                 <div class="form-group">
