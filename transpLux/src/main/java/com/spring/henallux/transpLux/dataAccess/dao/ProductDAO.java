@@ -27,7 +27,7 @@ public class ProductDAO implements ProductAccessDAO {
 
 
     @Override
-    public ArrayList<Product> findProductByCategory(String category) throws EmptyProductListException {
+    public ArrayList<Product> findProductsByCategory(String category) throws EmptyProductListException {
         List<ProductEntity> productEntities = null;
         if(category == null)
             productEntities = productRepository.findAll();
@@ -45,10 +45,6 @@ public class ProductDAO implements ProductAccessDAO {
 
     }
 
-    public ArrayList<Product> findAllProducts() throws EmptyProductListException {
-        return findProductByCategory(null);
-    }
-
     @Override
     public Product findProductById(Integer id) throws Exception {
 
@@ -57,5 +53,7 @@ public class ProductDAO implements ProductAccessDAO {
         if (productEntity == null) throw new Exception();
 
         return productConverter.productEntityToProductModel(productEntity);
+
     }
+
 }

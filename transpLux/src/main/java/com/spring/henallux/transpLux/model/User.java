@@ -10,6 +10,7 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 
+
 public class User implements UserDetails {
     @NotBlank
     private String username;
@@ -52,6 +53,8 @@ public class User implements UserDetails {
     private String authorities;
 
     private Boolean accountNonExpired;
+
+    private int currentOrderId;
 
     private Boolean accountNonLocked;
 
@@ -108,6 +111,14 @@ public class User implements UserDetails {
 
     public void setCountry(String country) {
         this.country = country;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
     }
 
     public String getFavoriteAnimal() {
@@ -228,5 +239,12 @@ public class User implements UserDetails {
 
     public void setEnabled(Boolean enabled) {
         this.enabled = enabled;
+
+    public int getCurrentOrderId() {
+        return currentOrderId;
+    }
+
+    public void setCurrentOrderId(int currentOrderId) {
+        this.currentOrderId = currentOrderId;
     }
 }

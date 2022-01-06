@@ -5,6 +5,7 @@ import com.spring.henallux.transpLux.model.Translation;
 import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.List;
 
 @Entity
 @Table(name = "category")
@@ -16,8 +17,8 @@ public class CategoryEntity {
     @Column(name = "default_name")
     private String defaultName;
 
-    @OneToMany(mappedBy = "category",fetch = FetchType.LAZY)
-    private Collection<TranslationEntity> translations;
+    @OneToMany(mappedBy = "category")
+    private List<TranslationEntity> translations;
 
     public String getDefaultName() {
         return defaultName;
@@ -35,11 +36,11 @@ public class CategoryEntity {
         this.id = id;
     }
 
-    public Collection<TranslationEntity> getTranslations() {
+    public List<TranslationEntity> getTranslations() {
         return translations;
     }
 
-    public void setTranslations(Collection<TranslationEntity> translations) {
+    public void setTranslations(List<TranslationEntity> translations) {
         this.translations = translations;
     }
 }

@@ -2,18 +2,30 @@ package com.spring.henallux.transpLux.controller;
 
 import com.spring.henallux.transpLux.Constants;
 import com.spring.henallux.transpLux.model.Cart;
+import com.spring.henallux.transpLux.model.LineItem;
+import com.spring.henallux.transpLux.model.Command;
 import com.spring.henallux.transpLux.model.User;
+import com.spring.henallux.transpLux.services.CommandService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.SessionAttributes;
+import java.util.ArrayList;
 
 @Controller
 @RequestMapping(value = "/purchase")
 @SessionAttributes({Constants.CURRENT_USER, Constants.CART})
 public class PurchaseController {
+
+    private CommandService orderService;
+
+    @Autowired
+    public PurchaseController(CommandService orderService) {
+        this.orderService = orderService;
+    }
 
     @ModelAttribute(Constants.CURRENT_USER)
     public User user(){
@@ -26,12 +38,45 @@ public class PurchaseController {
     }
 
     @RequestMapping(method = RequestMethod.GET)
-    public String purchase(Model model,
-                           @ModelAttribute(value = Constants.CART) Cart cart,
-                           @ModelAttribute(value = Constants.CURRENT_USER) User user) {
+    public String purchase(Model model, @ModelAttribute(value = Constants.CART) Cart cart) {
+
+        if (cart.isEmpty())
+                return "redirect:/fail";
+
+        model.addAttribute("paypalButtonHidden", true);
 
         return "integrated:purchase";
+    }
 
+    @RequestMapping(value = "/registerCommand", method = RequestMethod.POST)
+    public String registerCommand(Model model,
+                                  @ModelAttribute(value = Constants.CURRENT_USER) User user,
+                                  @ModelAttribute(value = Constants.CART) Cart cart) {
+        Command order = new Command();
+        ArrayList<LineItem> items = new ArrayList<>();
+
+        order.setUserEmail(user.getEmail());
+
+        cart.getProducts().values().forEach(p -> {
+            items.add( new LineItem(p.getQuantity(), p.getProduct().getPrice(), p.getProduct().getId()));
+        });
+
+        user.setCurrentOrderId(orderService.insertNewCommand(order, items));
+
+        model.addAttribute("paypalButtonHidden", false);
+        model.addAttribute("totalAmount", cart.getTotalPrice());
+
+        return "integrated:purchase";
+    }
+
+    @RequestMapping(value = "/validateOrder", method = RequestMethod.GET)
+    public String validateCommand(Model model,
+                                  @ModelAttribute(value = Constants.CURRENT_USER) User user) {
+        int orderId = user.getCurrentOrderId();
+        if (orderId != 0)
+            orderService.validatePayment(orderId);
+
+        return "redirect:/";
     }
 
 }
