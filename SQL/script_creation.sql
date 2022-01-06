@@ -226,15 +226,22 @@ CREATE TABLE `user` (
   `email` varchar(50) NOT NULL,
   `first_name` varchar(20) NOT NULL,
   `last_name` varchar(20) NOT NULL,
-  `male` bit(1) NOT NULL,
+  `male` tinyint(1) NOT NULL,
   `city` varchar(20) NOT NULL,
   `country` varchar(20) NOT NULL,
-  `password` varchar(15) NOT NULL,
+  `password` varchar(200) NOT NULL,
   `zip_code` int NOT NULL,
-  `addess` varchar(100) NOT NULL,
+  `address` varchar(100) NOT NULL,
   `favorite_animal` varchar(45) DEFAULT NULL,
   `phone` varchar(45) NOT NULL,
-  PRIMARY KEY (`email`)
+  `username` varchar(45) NOT NULL,
+  `authorities` varchar(45) NOT NULL DEFAULT 'ROLE_USER',
+  `non_expired` tinyint(1) NOT NULL DEFAULT '1',
+  `non_locked` tinyint(1) NOT NULL DEFAULT '1',
+  `credentials_non_expired` tinyint(1) NOT NULL DEFAULT '1',
+  `enable` tinyint(1) NOT NULL DEFAULT '1',
+  PRIMARY KEY (`username`),
+  UNIQUE KEY `email_UNIQUE` (`email`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -244,6 +251,7 @@ CREATE TABLE `user` (
 
 LOCK TABLES `user` WRITE;
 /*!40000 ALTER TABLE `user` DISABLE KEYS */;
+INSERT INTO `user` VALUES ('manager@outlook.com','Isaline','Didier',0,'Sensenruth','Uzbekistan','$2a$10$63k3PJULkVlHYW7WrNLXXOENchLrFJQpJQm1dRbo4omm49GFrraRa',6832,'Rue des Minières 6','','473507157','isaline','ROLE_USER',1,1,1,1),('manr@outlook.com','Isaline','Didier',0,'Sensenruth','Uzbekistan','$2a$10$bUBwdPKxchToD1KLN7wwHONAkj.b3PEovXQbo3wgVUY7ExTTLgCoO',6832,'Rue des Minières 6','','473507157','isaline2','ROLE_USER',1,1,1,1);
 /*!40000 ALTER TABLE `user` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
