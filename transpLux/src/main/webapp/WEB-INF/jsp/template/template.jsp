@@ -82,16 +82,23 @@
                             <span class="badge badge-pill badge-danger notify">${nbItemsCart}</span>
                         </div>
                         <div class="widget-header icontext">
-                            <a href='<spring:url value="myAccount"/>' class="icon icon-sm rounded-circle border"><i class="fa fa-user"></i></a>
+                            <sec:authorize access="isAuthenticated()">
+                                <a href='<spring:url value="myAccount"/>' class="icon icon-sm rounded-circle border"><i class="fa fa-user"></i></a>
+                            </sec:authorize>
                             <div class="text">
                                 <span class="text-muted">Welcome!
-                                        ${pageContext.request.userPrincipal.username}
+                                        ${pageContext.request.userPrincipal.principal.firstName}
                                 </span>
                                 <div>
                                     <p>
+                                        <sec:authorize access="!isAuthenticated()">
                                             <a href='<spring:url value="login"/>'>Sign in</a> |
                                             <a href='<spring:url value="register"/>'> Register</a>
+                                        </sec:authorize>
+
+                                        <sec:authorize access="isAuthenticated()">
                                             <a href='<spring:url value="logout"/>'>Logout</a>
+                                        </sec:authorize>
                                     </p>
                                     <p>
                                         <a href="${localeFr}">FR</a> |

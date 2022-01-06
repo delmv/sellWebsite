@@ -18,7 +18,7 @@ import org.springframework.web.bind.annotation.SessionAttributes;
 import javax.validation.Valid;
 
 @Controller
-@RequestMapping(value = "/<sec:authorize access=\"isAuthenticated()\">")
+@RequestMapping(value = "/login")
 @SessionAttributes({Constants.CURRENT_USER, Constants.CART})
 public class LoginController {
 
@@ -40,7 +40,7 @@ public class LoginController {
     }
 
     @RequestMapping(method = RequestMethod.GET)
-    public String login(Model model,@ModelAttribute(value = Constants.CURRENT_USER)User currentUser, @ModelAttribute(value = Constants.CART) Cart cart){
+    public String login(Model model, @ModelAttribute(value = Constants.CURRENT_USER)User currentUser, @ModelAttribute(value = Constants.CART) Cart cart){
         model.addAttribute("title", "Login");
         model.addAttribute("nbItemsCart", cart.getProducts().size());
         model.addAttribute("user",new User());
