@@ -4,6 +4,7 @@ import com.spring.henallux.transpLux.Constants;
 import com.spring.henallux.transpLux.dataAccess.dao.CategoryDAO;
 import com.spring.henallux.transpLux.model.Cart;
 import com.spring.henallux.transpLux.model.User;
+import com.spring.henallux.transpLux.services.CategoryService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.ui.Model;
@@ -21,11 +22,11 @@ import java.util.ArrayList;
 @SessionAttributes({Constants.CURRENT_USER, Constants.CART})
 public class WelcomeController {
 
-    private CategoryDAO categoryDAO;
+    private CategoryService categoryService;
 
     @Autowired
-    public WelcomeController(CategoryDAO categoryDAO){
-        this.categoryDAO = categoryDAO;
+    public WelcomeController(CategoryService categoryService){
+        this.categoryService = categoryService;
     }
 
     @ModelAttribute(Constants.CART)
@@ -42,7 +43,7 @@ public class WelcomeController {
     public String home(Model model, @ModelAttribute(value = Constants.CURRENT_USER) User user, @ModelAttribute(value = Constants.CART) Cart cart, Locale locale){
         model.addAttribute("title", "Welcome Page");
         model.addAttribute("firstName",user.getFirstName());
-        model.addAttribute("categories", categoryDAO.findAllCategory());
+        model.addAttribute("categories", categoryService.findAllCategory());
         model.addAttribute("locale",locale.getLanguage());
         model.addAttribute("nbItemsCart", cart.getProducts().size());
         return "integrated:home";

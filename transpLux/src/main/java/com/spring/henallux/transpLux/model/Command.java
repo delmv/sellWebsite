@@ -3,14 +3,14 @@ package com.spring.henallux.transpLux.model;
 import java.util.ArrayList;
 import java.util.Date;
 
-public class Order {
+public class Command {
 
     private Boolean isPaid;
     private Date date;
     private ArrayList<LineItem> items;
     private String userEmail;
 
-    public Order() {
+    public Command() {
         isPaid = false;
         date = new Date();
         items = new ArrayList<LineItem>();

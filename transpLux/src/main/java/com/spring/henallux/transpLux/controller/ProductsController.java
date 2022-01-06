@@ -1,10 +1,9 @@
 package com.spring.henallux.transpLux.controller;
 
 import com.spring.henallux.transpLux.Constants;
-import com.spring.henallux.transpLux.dataAccess.dao.CategoryDAO;
-import com.spring.henallux.transpLux.dataAccess.dao.ProductDAO;
 import com.spring.henallux.transpLux.model.*;
-import org.apache.tomcat.jni.Local;
+import com.spring.henallux.transpLux.services.CategoryService;
+import com.spring.henallux.transpLux.services.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -18,13 +17,13 @@ import java.util.Locale;
 @RequestMapping(value = "/products")
 public class ProductsController {
 
-    private ProductDAO productDAO;
-    private CategoryDAO categoryDAO;
+    private ProductService productService;
+    private CategoryService categoryService;
 
     @Autowired
-    public ProductsController(ProductDAO productDAO, CategoryDAO categoryDAO){
-        this.productDAO = productDAO;
-        this.categoryDAO = categoryDAO;
+    public ProductsController(ProductService productService, CategoryService categoryService){
+        this.productService = productService;
+        this.categoryService = categoryService;
     }
 
     @ModelAttribute(Constants.CURRENT_USER)
@@ -43,7 +42,7 @@ public class ProductsController {
         boolean noCategory = category.equals("all");
         model.addAttribute("noCategory",noCategory);
 
-        ArrayList<Category> categories = categoryDAO.findAllCategory();
+        ArrayList<Category> categories = categoryService.findAllCategory();
         Category currentCategory = null;
 
         for (Category cat : categories) {
@@ -61,9 +60,9 @@ public class ProductsController {
        try {
             ArrayList<Product> products;
             if(noCategory)
-                products = productDAO.findAllProducts();
+                products = productService.findAllProducts();
             else
-                products = productDAO.findProductByCategory(category);
+                products = productService.findProductsByCategory(category);
 
             model.addAttribute("products", products);
             model.addAttribute("quantity", new Quantity());
@@ -78,7 +77,7 @@ public class ProductsController {
     public String details(@PathVariable String id,Model model) {
         model.addAttribute("title", "Product Details");
         try {
-            Product product = productDAO.findProductById(Integer.parseInt(id));
+            Product product = productService.findProductById(Integer.parseInt(id));
 
             model.addAttribute("product", product);
             model.addAttribute("quantity", new Quantity());

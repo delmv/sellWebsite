@@ -42,6 +42,8 @@ public class User {
 
     private String favoriteAnimal;
 
+    private int currentOrderId;
+
     public User() { }
 
     public int getId() {
@@ -108,7 +110,6 @@ public class User {
         this.password = password;
     }
 
-
     public String getFavoriteAnimal() {
         return favoriteAnimal;
     }
@@ -141,4 +142,11 @@ public class User {
         this.phone = phone;
     }
 
+    public int getCurrentOrderId() {
+        return currentOrderId;
+    }
+
+    public void setCurrentOrderId(int currentOrderId) {
+        this.currentOrderId = currentOrderId;
+    }
 }

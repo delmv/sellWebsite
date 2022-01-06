@@ -6,7 +6,6 @@ import com.spring.henallux.transpLux.model.Product;
 import java.util.ArrayList;
 
 public interface ProductAccessDAO {
-    ArrayList<Product> findProductByCategory(String category) throws EmptyProductListException;
-    ArrayList<Product> findAllProducts() throws EmptyProductListException;
+    ArrayList<Product> findProductsByCategory(String category) throws EmptyProductListException;
     Product findProductById(Integer id) throws Exception;
 }

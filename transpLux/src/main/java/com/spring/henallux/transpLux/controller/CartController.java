@@ -1,8 +1,11 @@
 package com.spring.henallux.transpLux.controller;
 
 import com.spring.henallux.transpLux.Constants;
-import com.spring.henallux.transpLux.dataAccess.dao.ProductDAO;
-import com.spring.henallux.transpLux.model.*;
+import com.spring.henallux.transpLux.model.Cart;
+import com.spring.henallux.transpLux.model.Product;
+import com.spring.henallux.transpLux.model.Quantity;
+import com.spring.henallux.transpLux.model.User;
+import com.spring.henallux.transpLux.services.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -10,18 +13,17 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
-import java.util.ArrayList;
 
 @Controller
 @SessionAttributes({Constants.CURRENT_USER, Constants.CART})
 @RequestMapping("/cart")
 public class CartController {
 
-    private ProductDAO productDAO;
+    private ProductService productService;
 
     @Autowired
-    public CartController(ProductDAO productDAO) {
-        this.productDAO = productDAO;
+    public CartController(ProductService productService) {
+        this.productService = productService;
     }
 
     @ModelAttribute(Constants.CART)
@@ -56,7 +58,7 @@ public class CartController {
 
         // MODIFIER L'EXCEPTION
         try {
-            Product product = productDAO.findProductById(Integer.parseInt(productId));
+            Product product = productService.findProductById(Integer.parseInt(productId));
             System.out.println(quantity.getNumber());
             cart.addProduct(product, quantity.getNumber());
         } catch (Exception e) {

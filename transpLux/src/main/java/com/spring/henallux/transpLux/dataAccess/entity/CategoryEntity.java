@@ -17,7 +17,7 @@ public class CategoryEntity {
     @Column(name = "default_name")
     private String defaultName;
 
-    @OneToMany(mappedBy = "category",fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "category")
     private List<TranslationEntity> translations;
 
     public String getDefaultName() {

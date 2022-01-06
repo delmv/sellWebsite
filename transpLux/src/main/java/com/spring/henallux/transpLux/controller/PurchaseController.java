@@ -1,21 +1,18 @@
 package com.spring.henallux.transpLux.controller;
 
 import com.spring.henallux.transpLux.Constants;
-import com.spring.henallux.transpLux.dataAccess.dao.OrderDAO;
 import com.spring.henallux.transpLux.model.Cart;
 import com.spring.henallux.transpLux.model.LineItem;
-import com.spring.henallux.transpLux.model.Order;
+import com.spring.henallux.transpLux.model.Command;
 import com.spring.henallux.transpLux.model.User;
+import com.spring.henallux.transpLux.services.CommandService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.jmx.export.annotation.ManagedOperation;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.SessionAttributes;
-
-import javax.sound.sampled.Line;
 import java.util.ArrayList;
 
 @Controller
@@ -23,11 +20,11 @@ import java.util.ArrayList;
 @SessionAttributes({Constants.CURRENT_USER, Constants.CART})
 public class PurchaseController {
 
-    private OrderDAO orderDAO;
+    private CommandService orderService;
 
     @Autowired
-    public PurchaseController(OrderDAO orderDAO) {
-        this.orderDAO = orderDAO;
+    public PurchaseController(CommandService orderService) {
+        this.orderService = orderService;
     }
 
     @ModelAttribute(Constants.CURRENT_USER)
@@ -55,8 +52,7 @@ public class PurchaseController {
     public String registerCommand(Model model,
                                   @ModelAttribute(value = Constants.CURRENT_USER) User user,
                                   @ModelAttribute(value = Constants.CART) Cart cart) {
-
-        Order order = new Order();
+        Command order = new Command();
         ArrayList<LineItem> items = new ArrayList<>();
 
         order.setUserEmail(user.getEmail());
@@ -65,13 +61,22 @@ public class PurchaseController {
             items.add( new LineItem(p.getQuantity(), p.getProduct().getPrice(), p.getProduct().getId()));
         });
 
-        orderDAO.insertNewOrder(order, items);
+        user.setCurrentOrderId(orderService.insertNewCommand(order, items));
 
         model.addAttribute("paypalButtonHidden", false);
         model.addAttribute("totalAmount", cart.getTotalPrice());
 
         return "integrated:purchase";
+    }
 
+    @RequestMapping(value = "/validateOrder", method = RequestMethod.GET)
+    public String validateCommand(Model model,
+                                  @ModelAttribute(value = Constants.CURRENT_USER) User user) {
+        int orderId = user.getCurrentOrderId();
+        if (orderId != 0)
+            orderService.validatePayment(orderId);
+
+        return "redirect:/";
     }
 
 }
