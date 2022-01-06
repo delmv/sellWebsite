@@ -9,5 +9,6 @@ public interface UserDataAccess {
 
     void setUser(User user);
     User getUser(String email, String password) throws UserNotFoundException;
+    public User findByUsername(String userName);
 
 }

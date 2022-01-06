@@ -51,7 +51,6 @@ public class RegisterController {
                               final BindingResult errors) {
         if (!errors.hasErrors()) {
             try {
-                //user.setPassword(Encryption.encrypt(user.getPassword()));
                 userDataAccess.setUser(user);
                 return "redirect:/";
             }catch(Exception e){

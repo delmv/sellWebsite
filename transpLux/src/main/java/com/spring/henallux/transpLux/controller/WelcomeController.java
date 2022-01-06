@@ -6,6 +6,7 @@ import com.spring.henallux.transpLux.model.Cart;
 import com.spring.henallux.transpLux.model.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.security.core.Authentication;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -13,8 +14,6 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.SessionAttributes;
 
 import java.util.Locale;
-
-import java.util.ArrayList;
 
 @Configuration
 @RequestMapping()
@@ -47,7 +46,6 @@ public class WelcomeController {
         model.addAttribute("nbItemsCart", cart.getProducts().size());
         return "integrated:home";
     }
-
 
     @RequestMapping(value = "/myAccount",method = RequestMethod.GET)
     public String myAccount(Model model){

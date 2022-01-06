@@ -25,11 +25,12 @@ public class CategoryConverter {
         Category category = mapper.map(categoryEntity,Category.class);
         HashMap<String,String> trads = new HashMap<>();
 
+        Collection<TranslationEntity> translationEntities = categoryEntity.getTranslations();
         //trucs qui marchent pas
-        Collection<TranslationEntity> translationEntities = new ArrayList<>(categoryEntity.getTranslations());
+        /*
         Translation translation;
         TranslationConverter translationConverter = new TranslationConverter();
-        ArrayList<Translation> translations = new ArrayList<>();
+        ArrayList<Translation> translations = new ArrayList<>();*/
 
         for(TranslationEntity translationEntity : translationEntities){
             LanguageEntity language = translationEntity.getLanguage();
@@ -37,16 +38,13 @@ public class CategoryConverter {
             String value = translationEntity.getName();
             trads.put(key, value);
 
-            //trucs qui marchent pas
+            /*//trucs qui marchent pas
             translation = translationConverter.translationEntityToTranslationModel(translationEntity);
-            translations.add(translation);
-
-
-
+            translations.add(translation);*/
         }
         category.setTrads(trads);
 
-        category.setTranslations(translations);
+        //category.setTranslations(translations);
 
         return category;
     }

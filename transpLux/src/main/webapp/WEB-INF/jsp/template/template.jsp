@@ -1,6 +1,7 @@
 <%@ page pageEncoding="UTF-8" contentType="text/html;charset=UTF-8" %>
 <%@include file="../include/importTags.jsp"%>
 <%@ taglib uri="http://tiles.apache.org/tags-tiles" prefix="tiles"%>
+
 <html>
 <head>
     <meta charset="utf-8">
@@ -83,11 +84,14 @@
                         <div class="widget-header icontext">
                             <a href='<spring:url value="myAccount"/>' class="icon icon-sm rounded-circle border"><i class="fa fa-user"></i></a>
                             <div class="text">
-                                <span class="text-muted">Welcome! ${firstName}</span>
+                                <span class="text-muted">Welcome!
+                                        ${pageContext.request.userPrincipal.username}
+                                </span>
                                 <div>
                                     <p>
-                                        <a href='<spring:url value="login"/>'>Sign in</a> |
-                                        <a href='<spring:url value="register"/>'> Register</a>
+                                            <a href='<spring:url value="login"/>'>Sign in</a> |
+                                            <a href='<spring:url value="register"/>'> Register</a>
+                                            <a href='<spring:url value="logout"/>'>Logout</a>
                                     </p>
                                     <p>
                                         <a href="${localeFr}">FR</a> |

@@ -14,7 +14,7 @@ public class Category {
 
     private HashMap<String,String> trads;
 
-    private ArrayList<Translation> translations;
+    //private ArrayList<Translation> translations;
 
     public String getDefaultName() {
         return defaultName;
@@ -44,11 +44,11 @@ public class Category {
         this.trads = trads;
     }
 
-    public ArrayList<Translation> getTranslations() {
+/*    public ArrayList<Translation> getTranslations() {
         return translations;
     }
 
     public void setTranslations(ArrayList<Translation> translations) {
         this.translations = translations;
-    }
+    }*/
 }

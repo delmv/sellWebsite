@@ -15,14 +15,14 @@
       <h4 class="card-title mb-4">Sign in</h4>
       <form:form id="login"
                 method="post"
-                action="/transpLux/login/send"
-                modelAttribute="loginForm">
+                 action=""
+                modelAttribute="user">
           <div class="form-group">
-              <form:label path="email">
-                  <spring:message code="emailLabel"/>*
+              <form:label path="username">
+                  <spring:message code="userNameLabel"/>*
               </form:label>
-              <form:input path="email" type="email" class="form-control" placeholder=""/>
-              <form:errors path="email" element="div"/>
+              <form:input path="username" class="form-control" placeholder=""/>
+              <form:errors path="username" element="div"/>
           </div> <!-- form-group// -->
           <div class="form-group">
               <form:label path="password">

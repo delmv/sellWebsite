@@ -18,7 +18,7 @@ import org.springframework.web.bind.annotation.SessionAttributes;
 import javax.validation.Valid;
 
 @Controller
-@RequestMapping(value = "/login")
+@RequestMapping(value = "/<sec:authorize access=\"isAuthenticated()\">")
 @SessionAttributes({Constants.CURRENT_USER, Constants.CART})
 public class LoginController {
 
@@ -40,14 +40,14 @@ public class LoginController {
     }
 
     @RequestMapping(method = RequestMethod.GET)
-    public String login(Model model, @ModelAttribute(value = Constants.CART) Cart cart){
+    public String login(Model model,@ModelAttribute(value = Constants.CURRENT_USER)User currentUser, @ModelAttribute(value = Constants.CART) Cart cart){
         model.addAttribute("title", "Login");
-        model.addAttribute("loginForm",new LoginForm());
         model.addAttribute("nbItemsCart", cart.getProducts().size());
+        model.addAttribute("user",new User());
         return "integrated:login";
     }
 
-    @RequestMapping(value = "/send", method = RequestMethod.POST)
+/*    @RequestMapping(value = "/send", method = RequestMethod.POST)
     public String getFormData(Model model,
                               @Valid @ModelAttribute(value = "loginForm") LoginForm loginForm,
                                 final BindingResult errors){
@@ -65,5 +65,5 @@ public class LoginController {
             System.out.println("aie");
             return "integrated:login";
         }
-    }
+    }*/
 }
