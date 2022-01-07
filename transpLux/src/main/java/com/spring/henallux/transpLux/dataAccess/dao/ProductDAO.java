@@ -25,6 +25,10 @@ public class ProductDAO implements ProductAccessDAO {
         this.productConverter = productConverter;
     }
 
+    public ProductDAO(ProductRepository productRepository) {
+        this.productRepository = productRepository;
+    }
+
 
     @Override
     public ArrayList<Product> findProductsByCategory(String category) throws EmptyProductListException {

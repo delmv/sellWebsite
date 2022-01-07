@@ -15,13 +15,13 @@ import java.util.Locale;
 @Controller
 @SessionAttributes({Constants.CURRENT_USER, Constants.CART})
 @RequestMapping(value = "/products")
-public class ProductsController {
+public class ProductController {
 
     private ProductService productService;
     private CategoryService categoryService;
 
     @Autowired
-    public ProductsController(ProductService productService, CategoryService categoryService){
+    public ProductController(ProductService productService, CategoryService categoryService){
         this.productService = productService;
         this.categoryService = categoryService;
     }

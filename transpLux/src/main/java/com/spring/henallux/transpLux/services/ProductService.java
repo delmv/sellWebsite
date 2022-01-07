@@ -22,6 +22,10 @@ public class ProductService {
         this.productDAO = productDAO;
     }
 
+    public ProductService() {
+
+    }
+
 
     public ArrayList<Product> findProductsByCategory(String category) throws Exception {
         try {
