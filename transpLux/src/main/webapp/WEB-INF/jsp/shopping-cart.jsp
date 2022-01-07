@@ -79,7 +79,7 @@
 </table>
 
 <div class="card-body border-top">
-	<c:if test="${cart.getTotalPrice() > 0 && user.email != null}">
+	<c:if test="${cart.getTotalPrice() > 0}">
 		<a href="/transpLux/purchase" class="btn btn-primary float-md-right"> <spring:message code="buyLabel"/> <i class="fa fa-chevron-right"></i> </a>
 	</c:if>
 </div>
@@ -96,15 +96,15 @@
 			<div class="card-body">
 					<dl class="dlist-align">
 					  <dt><spring:message code="totalPriceLabel"/>:</dt>
-					  <dd class="text-right">${cart.getTotalPrice()}</dd>
+					  <dd class="text-right">${cart.getTotalPriceWithoutDiscounts()}</dd>
 					</dl>
 					<dl class="dlist-align">
 					  <dt><spring:message code="discountLabel"/>:</dt>
-					  <dd class="text-right">658</dd>
+					  <dd class="text-right">${cart.getTotalDiscounts()}</dd>
 					</dl>
 					<dl class="dlist-align">
 					  <dt><spring:message code="totalPriceDiscountLabel"/>:</dt>
-					  <dd class="text-right  h5"><strong>$1,650</strong></dd>
+					  <dd class="text-right  h5"><strong>${cart.getTotalPrice()}</strong></dd>
 					</dl>
 			</div> <!-- card-body.// -->
 		</div>  <!-- card .// -->

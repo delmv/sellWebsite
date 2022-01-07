@@ -21,18 +21,8 @@ public class Product {
 
     private String productLogo;
 
-    public Product() {
-    }
+    public Product() {}
 
-    public double getCurrentPrice(){
-        Date today = new Date();
-        if(promotion != null &&
-                promotion.getStartingDate().compareTo(today) <= 0 &&
-                promotion.getEndingDate().compareTo(today) >= 0){
-            return price*(1 - (double)promotion.getPercentage()/100);
-        }
-        return price;
-    }
     public int getId() {
         return id;
     }
@@ -104,4 +94,34 @@ public class Product {
     public void setPromotion(Promotion promotion) {
         this.promotion = promotion;
     }
+
+    public double getCurrentPrice() {
+        Date today = new Date();
+
+        if(promotion != null &&
+                promotion.getStartingDate().compareTo(today) <= 0 &&
+                promotion.getEndingDate().compareTo(today) >= 0) {
+
+            return price * (1 - (double)promotion.getPercentage()/100);
+
+        }
+
+        return price;
+    }
+
+    public double getDiscount() {
+
+        Date today = new Date();
+
+        if(promotion != null &&
+                promotion.getStartingDate().compareTo(today) <= 0 &&
+                promotion.getEndingDate().compareTo(today) >= 0) {
+
+            return price * ( (double)promotion.getPercentage() / 100 );
+
+        }
+
+        return 0;
+    }
+
 }

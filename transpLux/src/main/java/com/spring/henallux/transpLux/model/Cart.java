@@ -38,6 +38,18 @@ public class Cart {
 
     }
 
+    public double getTotalPriceWithoutDiscounts() {
+
+        return products.values().stream().mapToDouble(p -> p.getProduct().getCurrentPrice() * p.getQuantity()).sum();
+
+    }
+
+    public double getTotalDiscounts() {
+
+        return products.values().stream().mapToDouble(p -> p.getProduct().getDiscount() * p.getQuantity()).sum();
+
+    }
+
     public Boolean isEmpty() {
         return products.isEmpty();
     }

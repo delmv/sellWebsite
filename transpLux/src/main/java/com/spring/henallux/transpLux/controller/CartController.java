@@ -52,7 +52,7 @@ public class CartController {
 
         if (errors.hasErrors()) {
 
-            return "integrated:listing-products";
+            return null;
 
         }
 
@@ -65,7 +65,7 @@ public class CartController {
             System.out.println("Erreur lors du parse");
         }
 
-        return "integrated:listing-products";
+        return "redirect:/products/details/" + productId;
     }
 
     @RequestMapping(value = "/changeQuantity/{productId}", method = RequestMethod.POST)
@@ -87,6 +87,7 @@ public class CartController {
         }
 
         model.addAttribute("cart", cart);
+        model.addAttribute("nbItemsCart", cart.getProducts().size());
 
         return "integrated:shopping-cart";
     }
@@ -102,10 +103,11 @@ public class CartController {
         if (cart.getProducts().containsKey(productIdInt)) {
             cart.getProducts().remove(productIdInt);
         }
+
         model.addAttribute("quantity", new Quantity());
         model.addAttribute("cart", cart);
+        model.addAttribute("nbItemsCart", cart.getProducts().size());
 
         return "integrated:shopping-cart";
-
     }
 }

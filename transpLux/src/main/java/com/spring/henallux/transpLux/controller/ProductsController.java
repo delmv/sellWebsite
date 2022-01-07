@@ -74,13 +74,16 @@ public class ProductsController {
         }
     }
     @RequestMapping(value = "/details/{id}",method = RequestMethod.GET)
-    public String details(@PathVariable String id,Model model) {
+    public String details(@PathVariable String id,
+                          @ModelAttribute(value = Constants.CART) Cart cart,
+                          Model model) {
         model.addAttribute("title", "Product Details");
         try {
             Product product = productService.findProductById(Integer.parseInt(id));
 
             model.addAttribute("product", product);
             model.addAttribute("quantity", new Quantity());
+            model.addAttribute("nbItemsCart", cart.getProducts().size());
 
             return "integrated:product-details";
         }catch(Exception e){
