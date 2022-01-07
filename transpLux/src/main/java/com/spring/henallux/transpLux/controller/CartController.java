@@ -5,6 +5,7 @@ import com.spring.henallux.transpLux.model.Cart;
 import com.spring.henallux.transpLux.model.Product;
 import com.spring.henallux.transpLux.model.Quantity;
 import com.spring.henallux.transpLux.model.User;
+import com.spring.henallux.transpLux.services.CartService;
 import com.spring.henallux.transpLux.services.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -20,10 +21,12 @@ import javax.validation.Valid;
 public class CartController {
 
     private ProductService productService;
+    private CartService cartService;
 
     @Autowired
-    public CartController(ProductService productService) {
+    public CartController(ProductService productService, CartService cartService) {
         this.productService = productService;
+        this.cartService = cartService;
     }
 
     @ModelAttribute(Constants.CART)
@@ -43,6 +46,9 @@ public class CartController {
         model.addAttribute("quantity", new Quantity());
         model.addAttribute("nbItemsCart", cart.getProducts().size());
         model.addAttribute("user", user);
+        model.addAttribute("cartPriceWithoutDiscounts", cartService.getCartTotalPriceWithoutDiscounts(cart));
+        model.addAttribute("cartTotalDiscount", cartService.getTotalDiscounts(cart));
+        model.addAttribute("cartTotalPrice", cartService.getTotalPriceWithDiscounts(cart));
 
         return "integrated:shopping-cart";
     }
@@ -88,6 +94,10 @@ public class CartController {
 
         model.addAttribute("cart", cart);
         model.addAttribute("nbItemsCart", cart.getProducts().size());
+        model.addAttribute("cartService", cartService);
+        model.addAttribute("cartPriceWithoutDiscounts", cartService.getCartTotalPriceWithoutDiscounts(cart));
+        model.addAttribute("cartTotalDiscount", cartService.getTotalDiscounts(cart));
+        model.addAttribute("cartTotalPrice", cartService.getTotalPriceWithDiscounts(cart));
 
         return "integrated:shopping-cart";
     }
@@ -107,6 +117,10 @@ public class CartController {
         model.addAttribute("quantity", new Quantity());
         model.addAttribute("cart", cart);
         model.addAttribute("nbItemsCart", cart.getProducts().size());
+        model.addAttribute("cartService", cartService);
+        model.addAttribute("cartPriceWithoutDiscounts", cartService.getCartTotalPriceWithoutDiscounts(cart));
+        model.addAttribute("cartTotalDiscount", cartService.getTotalDiscounts(cart));
+        model.addAttribute("cartTotalPrice", cartService.getTotalPriceWithDiscounts(cart));
 
         return "integrated:shopping-cart";
     }

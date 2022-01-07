@@ -5,6 +5,7 @@ import com.spring.henallux.transpLux.model.Cart;
 import com.spring.henallux.transpLux.model.LineItem;
 import com.spring.henallux.transpLux.model.Command;
 import com.spring.henallux.transpLux.model.User;
+import com.spring.henallux.transpLux.services.CartService;
 import com.spring.henallux.transpLux.services.CommandService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
@@ -22,10 +23,12 @@ import java.util.ArrayList;
 public class PurchaseController {
 
     private CommandService orderService;
+    private CartService cartService;
 
     @Autowired
-    public PurchaseController(CommandService orderService) {
+    public PurchaseController(CommandService orderService, CartService cartService) {
         this.orderService = orderService;
+        this.cartService = cartService;
     }
 
     @ModelAttribute(Constants.CART)
@@ -55,13 +58,13 @@ public class PurchaseController {
         order.setUserEmail(user.getEmail());
 
         cart.getProducts().values().forEach(p -> {
-            items.add( new LineItem(p.getQuantity(), p.getProduct().getPrice(), p.getProduct().getId()));
+            items.add( new LineItem(p.getQuantity(), p.getProduct().getPriceWithDiscount(), p.getProduct().getId()));
         });
 
         user.setCurrentOrderId(orderService.insertNewCommand(order, items));
 
         model.addAttribute("paypalButtonHidden", false);
-        model.addAttribute("totalAmount", cart.getTotalPrice());
+        model.addAttribute("totalAmount", cartService.getTotalPriceWithDiscounts(cart));
 
         return "integrated:purchase";
     }

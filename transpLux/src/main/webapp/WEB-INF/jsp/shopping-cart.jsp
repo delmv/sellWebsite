@@ -61,8 +61,8 @@
 		</form:form>
 		<td>
 			<div class="price-wrap">
-				<var class="price">$${item.product.price * item.quantity}</var>
-				<small class="text-muted"> $${item.product.price} <spring:message code="eachProductLabel"/> </small>
+				<var class="price">${item.product.price * item.quantity}</var>
+				<small class="text-muted"> ${item.product.price} <spring:message code="eachProductLabel"/> </small>
 			</div> <!-- price-wrap .// -->
 		</td>
 		<form:form
@@ -79,7 +79,7 @@
 </table>
 
 <div class="card-body border-top">
-	<c:if test="${cart.getTotalPrice() > 0}">
+	<c:if test="${cartTotalPrice > 0}">
 		<a href="/transpLux/purchase" class="btn btn-primary float-md-right"> <spring:message code="buyLabel"/> <i class="fa fa-chevron-right"></i> </a>
 	</c:if>
 </div>
@@ -96,15 +96,15 @@
 			<div class="card-body">
 					<dl class="dlist-align">
 					  <dt><spring:message code="totalPriceLabel"/>:</dt>
-					  <dd class="text-right">${cart.getTotalPriceWithoutDiscounts()}</dd>
+					  <dd class="text-right">${cartPriceWithoutDiscounts}</dd>
 					</dl>
 					<dl class="dlist-align">
 					  <dt><spring:message code="discountLabel"/>:</dt>
-					  <dd class="text-right">${cart.getTotalDiscounts()}</dd>
+					  <dd class="text-right">${cartTotalDiscount}</dd>
 					</dl>
 					<dl class="dlist-align">
 					  <dt><spring:message code="totalPriceDiscountLabel"/>:</dt>
-					  <dd class="text-right  h5"><strong>${cart.getTotalPrice()}</strong></dd>
+					  <dd class="text-right  h5"><strong>${cartTotalPrice}</strong></dd>
 					</dl>
 			</div> <!-- card-body.// -->
 		</div>  <!-- card .// -->

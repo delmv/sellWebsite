@@ -11,6 +11,10 @@ public class Product {
 
     private Double price;
 
+    private Double discountPrice;
+
+    private Double priceWithDiscount;
+
     private Promotion promotion;
 
     private Category category;
@@ -55,6 +59,22 @@ public class Product {
         this.price = price;
     }
 
+    public Double getDiscountPrice() {
+        return discountPrice;
+    }
+
+    public void setDiscountPrice(Double discountPrice) {
+        this.discountPrice = discountPrice;
+    }
+
+    public Double getPriceWithDiscount() {
+        return priceWithDiscount;
+    }
+
+    public void setPriceWithDiscount(Double priceWithDiscount) {
+        this.priceWithDiscount = priceWithDiscount;
+    }
+
     public Category getCategory() {
         return category;
     }
@@ -93,35 +113,6 @@ public class Product {
 
     public void setPromotion(Promotion promotion) {
         this.promotion = promotion;
-    }
-
-    public double getCurrentPrice() {
-        Date today = new Date();
-
-        if(promotion != null &&
-                promotion.getStartingDate().compareTo(today) <= 0 &&
-                promotion.getEndingDate().compareTo(today) >= 0) {
-
-            return price * (1 - (double)promotion.getPercentage()/100);
-
-        }
-
-        return price;
-    }
-
-    public double getDiscount() {
-
-        Date today = new Date();
-
-        if(promotion != null &&
-                promotion.getStartingDate().compareTo(today) <= 0 &&
-                promotion.getEndingDate().compareTo(today) >= 0) {
-
-            return price * ( (double)promotion.getPercentage() / 100 );
-
-        }
-
-        return 0;
     }
 
 }

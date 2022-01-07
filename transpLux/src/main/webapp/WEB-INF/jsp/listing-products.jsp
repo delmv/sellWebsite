@@ -70,8 +70,8 @@
                     <aside class="col-sm-3">
                         <div class="info-aside">
                             <div class="price-wrap">
-                                <span class="price h5"> ${product.getCurrentPrice()} </span>
-                                <c:if test="${product.getCurrentPrice() != product.getPrice()}">
+                                <span class="price h5"> ${product.getPriceWithDiscount()} </span>
+                                <c:if test="${product.getPriceWithDiscount() != product.getPrice()}">
                                     <del class="price-old"> ${product.getPrice()}</del>
                                 </c:if>
                             </div> <!-- info-price-detail // -->

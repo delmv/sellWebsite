@@ -67,7 +67,7 @@ public class ProductsController {
             model.addAttribute("products", products);
             model.addAttribute("quantity", new Quantity());
 
-            return "integrated:listing-products";
+           return "integrated:listing-products";
         }catch(Exception e){
             System.out.println(e);
             return "redirect:/";

@@ -38,8 +38,8 @@
 						<p class="title mt-2 h5">${product.getLabel()}</p>
 						<div class="d-flex mb-3">
 							<div class="price-wrap mr-4">
-								<span class="price h5"> ${product.getCurrentPrice()} </span>
-								<c:if test="${product.getCurrentPrice() != product.getPrice()}">
+								<span class="price h5"> ${product.getPriceWithDiscount()}</span>
+								<c:if test="${product.getPriceWithDiscount() != product.getPrice()}">
 									<del class="price-old"> ${product.getPrice()}</del>
 								</c:if>
 							</div> <!-- price-dewrap // -->
