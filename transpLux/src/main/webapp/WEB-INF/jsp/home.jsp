@@ -17,11 +17,11 @@
 	<div class="collapse navbar-collapse" id="collapsibleNavbar">
 		<ul class="navbar-nav">
 			<li class="nav-item">
-				<a class="nav-link" href="./products/all">All</a>
+				<a class="nav-link" href="./products/all"><spring:message code="allCategorySelector"/></a>
 			</li>
 			<c:forEach var="category" items="${categories}">
 				<li class="nav-item">
-					<a class="nav-link" href="/transpLux/products/${category.getDefaultName()}">${category.getDefaultName()}</a>
+					<a class="nav-link" href="/transpLux/products/${category.getDefaultName()}">${category.getNameByLocal(locale)}</a>
 				</li>
 			</c:forEach>
 		</ul>
@@ -50,7 +50,7 @@
 					</span>
 					</div>
 					<figcaption class="info">
-						<h6 class="title">Reasonable prices</h6>
+						<h6 class="title"><spring:message code="reasonablePricesLabel"/></h6>
 						<p class="text-muted">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
 							tempor incididunt ut labor </p>
 					</figcaption>
@@ -64,7 +64,7 @@
 					</span>
 					</div>
 					<figcaption class="info">
-						<h6 class="title">Customer support 24/7 </h6>
+						<h6 class="title"><spring:message code="customerSupportLabel" /></h6>
 						<p class="text-muted">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
 							tempor incididunt ut labor </p>
 					</figcaption>
@@ -78,7 +78,7 @@
 					</span>
 					</div>
 					<figcaption class="info">
-						<h6 class="title">Quick delivery</h6>
+						<h6 class="title"><spring:message code="quickDeliveryLabel" /></h6>
 						<p class="text-muted">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
 							tempor incididunt ut labor </p>
 					</figcaption>

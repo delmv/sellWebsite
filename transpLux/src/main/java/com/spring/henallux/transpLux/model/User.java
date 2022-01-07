@@ -113,14 +113,6 @@ public class User implements UserDetails {
         this.country = country;
     }
 
-    public String getPassword() {
-        return password;
-    }
-
-    public void setPassword(String password) {
-        this.password = password;
-    }
-
     public String getFavoriteAnimal() {
         return favoriteAnimal;
     }
@@ -152,6 +144,7 @@ public class User implements UserDetails {
     public void setPhone(String phone) {
         this.phone = phone;
     }
+
     @Override
     public Collection<GrantedAuthority> getAuthorities() {
         List<GrantedAuthority> grantedAuthorities = new ArrayList<>();
@@ -239,6 +232,7 @@ public class User implements UserDetails {
 
     public void setEnabled(Boolean enabled) {
         this.enabled = enabled;
+    }
 
     public int getCurrentOrderId() {
         return currentOrderId;

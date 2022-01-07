@@ -17,7 +17,7 @@ public class LineItemEntity {
     @Column(name = "real_Price")
     private Double realPrice;
 
-    @Column(name = "order_id")
+    @Column(name = "command_id")
     private Integer orderId;
 
     @Column(name = "product_id")

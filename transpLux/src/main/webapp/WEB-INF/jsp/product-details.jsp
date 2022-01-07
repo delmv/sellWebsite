@@ -32,7 +32,7 @@
 			<div class="card-body">
 			<div class="row">
 				<aside class="col-sm-4">
-					<a href="#" class="img-wrap"><img src='<spring:url value="${product.getProductLogo()}" />'></a>
+					<a href="#" class="img-wrap"><img src='<c:url value="${product.getProductLogo()}" />'></a>
 				</aside> <!-- col.// -->
 				<div class="col-sm-8">
 						<p class="title mt-2 h5">${product.getLabel()}</p>

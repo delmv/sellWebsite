@@ -9,7 +9,7 @@
 <!-- ========================= SECTION PAGETOP ========================= -->
 <section class="section-pagetop bg">
 <div class="container">
-	<h2 class="title-page">Shopping cart</h2>
+	<h2 class="title-page"><spring:message code="cartLabel"/></h2>
 </div> <!-- container //  -->
 </section>
 <!-- ========================= SECTION INTRO END// ========================= -->
@@ -25,10 +25,10 @@
 <table class="table table-borderless table-shopping-cart">
 <thead class="text-muted">
 <tr class="small text-uppercase">
-  <th scope="col">Product</th>
-  <th scope="col" width="120">Quantity</th>
-  <th scope="col" width="120">Apply quantity</th>
-	<th scope="col">Price</th>
+  <th scope="col"><spring:message code="productsLabel"/></th>
+  <th scope="col" width="120"><spring:message code="quantityLabel"/></th>
+  <th scope="col" width="120"><spring:message code="applyQuantityLabel"/></th>
+	<th scope="col"><spring:message code="priceLabel"/></th>
   <th scope="col" class="text-right" width="200"> </th>
 </tr>
 </thead>
@@ -55,21 +55,21 @@
 		</td>
 		<td>
 			<form:button class="addToCartButton">
-				<span class="btn btn-light"> Edit quantity</span>
+				<span class="btn btn-light"><spring:message code="applyQuantityLabel"/></span>
 			</form:button>
 		</td>
 		</form:form>
 		<td>
 			<div class="price-wrap">
 				<var class="price">$${item.product.price * item.quantity}</var>
-				<small class="text-muted"> $${item.product.price} each </small>
+				<small class="text-muted"> $${item.product.price} <spring:message code="eachProductLabel"/> </small>
 			</div> <!-- price-wrap .// -->
 		</td>
 		<form:form
 				method="POST"
 				action="/transpLux/cart/remove/${item.product.id}">
 		<td class="text-right">
-				<button class="addToCartButton"><span class="btn btn-light"> Remove</span></button>
+				<button class="addToCartButton"><span class="btn btn-light"> <spring:message code="removeLabel"/> </span></button>
 		</td>
 		</form:form>
 	</tr>
@@ -80,13 +80,13 @@
 
 <div class="card-body border-top">
 	<c:if test="${cart.getTotalPrice() > 0 && user.email != null}">
-		<a href="/transpLux/purchase" class="btn btn-primary float-md-right"> Make Purchase <i class="fa fa-chevron-right"></i> </a>
+		<a href="/transpLux/purchase" class="btn btn-primary float-md-right"> <spring:message code="buyLabel"/> <i class="fa fa-chevron-right"></i> </a>
 	</c:if>
 </div>
 </div> <!-- card.// -->
 
 <div class="alert alert-success mt-3">
-	<p class="icontext"><i class="icon text-success fa fa-truck"></i> Free Delivery within 1-2 weeks</p>
+	<p class="icontext"><i class="icon text-success fa fa-truck"></i> <spring:message code="freeDeliveryWithinLabel"/></p>
 </div>
 
 	</main> <!-- col.// -->
@@ -95,15 +95,15 @@
 		<div class="card">
 			<div class="card-body">
 					<dl class="dlist-align">
-					  <dt>Total price:</dt>
+					  <dt><spring:message code="totalPriceLabel"/>:</dt>
 					  <dd class="text-right">${cart.getTotalPrice()}</dd>
 					</dl>
 					<dl class="dlist-align">
-					  <dt>Discount:</dt>
-					  <dd class="text-right">USD 658</dd>
+					  <dt><spring:message code="discountLabel"/>:</dt>
+					  <dd class="text-right">658</dd>
 					</dl>
 					<dl class="dlist-align">
-					  <dt>Total:</dt>
+					  <dt><spring:message code="totalPriceDiscountLabel"/>:</dt>
 					  <dd class="text-right  h5"><strong>$1,650</strong></dd>
 					</dl>
 			</div> <!-- card-body.// -->
@@ -118,7 +118,7 @@
 <!-- ========================= SECTION  ========================= -->
 <section class="section-name bg padding-y">
 <div class="container">
-<h6>Payment and refund policy</h6>
+<h6><spring:message code="paymentPolicyLabel"/></h6>
 <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
 tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
 quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
@@ -135,10 +135,6 @@ proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
 </div><!-- container // -->
 </section>
 <!-- ========================= SECTION  END// ========================= -->
-
-
-
-
 
 </body>
 </html>

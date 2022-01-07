@@ -64,16 +64,7 @@
                     </a> <!-- brand-wrap.// -->
                 </div>
                 <div class="col-lg-6 col-sm-12">
-                    <form action="#" class="search">
-                        <div class="input-group w-100">
-                            <input type="text" class="form-control" placeholder="Search">
-                            <div class="input-group-append">
-                                <button class="btn btn-primary" type="submit">
-                                    <i class="fa fa-search"></i> Search
-                                </button>
-                            </div>
-                        </div>
-                    </form> <!-- search-wrap .end// -->
+
                 </div> <!-- col.// -->
                 <div class="col-lg-4 col-sm-6 col-12">
                     <div class="widgets-wrap float-md-right">
@@ -86,18 +77,18 @@
                                 <a href='<spring:url value="myAccount"/>' class="icon icon-sm rounded-circle border"><i class="fa fa-user"></i></a>
                             </sec:authorize>
                             <div class="text">
-                                <span class="text-muted">Welcome!
+                                <span class="text-muted"><spring:message code="welcomeLabel" />
                                         ${pageContext.request.userPrincipal.principal.firstName}
                                 </span>
                                 <div>
                                     <p>
                                         <sec:authorize access="!isAuthenticated()">
-                                            <a href='<spring:url value="login"/>'>Sign in</a> |
-                                            <a href='<spring:url value="register"/>'> Register</a>
+                                            <a href='<spring:url value="login"/>'><spring:message code="signInLabel"/></a> |
+                                            <a href='<spring:url value="register"/>'><spring:message code="registerLabel"/></a>
                                         </sec:authorize>
 
                                         <sec:authorize access="isAuthenticated()">
-                                            <a href='<spring:url value="logout"/>'>Logout</a>
+                                            <a href='<spring:url value="logout"/>'><spring:message code="logoutLabel"/></a>
                                         </sec:authorize>
                                     </p>
                                     <p>
@@ -122,21 +113,9 @@
         <section class="footer-top padding-y">
             <div class="row">
                 <aside class="col-md col-6">
-                    <h6 class="title">Company</h6>
+                    <h6 class="title"><spring:message code="companyLabel"/></h6>
                     <ul class="list-unstyled">
-                        <li> <a href="./aboutus">About us</a></li>
-                        <li> <a href="./aboutus">TranspLux Values</a></li>
-                        <li> <a href="./aboutus">Infos</a></li>
-                        <li> <a href="./aboutus">TranspLux</a></li>
-                    </ul>
-                </aside>
-                <aside class="col-md col-6">
-                    <h6 class="title">Account</h6>
-                    <ul class="list-unstyled">
-                        <li> <a href="./login"> User Login </a></li>
-                        <li> <a href="./register"> User register </a></li>
-                        <li> <a href="./myAccount"> Account Setting </a></li>
-                        <li> <a href="./myAccount"> My Orders </a></li>
+                        <li> <a href="./aboutus"><spring:message code="aboutUsLabel"/></a></li>
                     </ul>
                 </aside>
             </div> <!-- row.// -->

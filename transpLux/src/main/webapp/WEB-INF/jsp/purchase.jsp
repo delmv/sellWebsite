@@ -33,7 +33,7 @@
                 <input type="hidden" name="cmd"             value="_xclick">
                 <input type="hidden" name="currency_code"   value="EUR">
 
-                <input type="hidden" name="return"          value='http://localhost:8081/transpLux'>
+                <input type="hidden" name="return"          value='http://localhost:8081/transpLux/purchase/validateOrder'>
 
                 <button class="addToCartButton">
                     <span class="btn btn-primary"><spring:message code="payWithPaypalButton" /><i class="fa fa-chevron-right"></i> </span>

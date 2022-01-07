@@ -59,7 +59,7 @@ CREATE TABLE `language` (
 
 LOCK TABLES `language` WRITE;
 /*!40000 ALTER TABLE `language` DISABLE KEYS */;
-INSERT INTO `language` VALUES (1,'Français'),(2,'English');
+INSERT INTO `language` VALUES (1,'fr'),(2,'en');
 /*!40000 ALTER TABLE `language` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -153,7 +153,7 @@ CREATE TABLE `product` (
 
 LOCK TABLES `product` WRITE;
 /*!40000 ALTER TABLE `product` DISABLE KEYS */;
-INSERT INTO `product` VALUES (1,'Kawasaki STX 160','The fastest jet-ski in the world',14849,1,1,'../images/products/Jet_Ski/Kawasaki_STX_160.png','../images/products/Jet_Ski/Kawasaki_STX_160_Logo.png'),(2,'Daher Socata TBM 940','To go where you want to go',4000000,NULL,2,'../images/products/Light_Aircraft/Daher_Socata_TBM_940.jpg','../images/products/Light_Aircraft/Daher_Socata_TBM_940_Logo.jpg'),(3,'Piper M600','Fly like a pro',1000000,NULL,2,'../images/products/Light_Aircraft/Piper_M600.jpg','../images/products/Light_Aircraft/Piper_M600_Logo.png'),(4,'Cessna Citation M2','Perfect for the best CTO',3000000,NULL,3,'../images/products/Private_Jet/Cessna_Citation_M2.jpg','../images/products/Private_Jet/Cessna_Citation_M2_Logo.png'),(5,'BMW I8','Fell the power',142200,NULL,4,'../images/products/Sport_Car/bmw_i8.jpg','../images/products/Sport_Car/bmw_i8_Logo.png'),(6,'Porsche 911','The true car',125792,NULL,4,'../images/products/Sport_Car/Porsche_911.png','../images/products/Sport_Car/Porsche_911_Logo.png'),(7,'DOJO','For your best cruises',10000000,NULL,5,'../images/products/Yacht/DOJO.jpg','../images/products/Yacht/DOJO_Logo.png');
+INSERT INTO `product` VALUES (1,'Kawasaki STX 160','The fastest jet-ski in the world',14849,1,1,'/images/products/Jet_Ski/Kawasaki_STX_160.png','/images/products/Jet_Ski/Kawasaki_STX_160_Logo.png'),(2,'Daher Socata TBM 940','To go where you want to go',4000000,NULL,2,'/images/products/Light_Aircraft/Daher_Socata_TBM_940.jpg','/images/products/Light_Aircraft/Daher_Socata_TBM_940_Logo.jpg'),(3,'Piper M600','Fly like a pro',1000000,NULL,2,'/images/products/Light_Aircraft/Piper_M600.jpg','/images/products/Light_Aircraft/Piper_M600_Logo.png'),(4,'Cessna Citation M2','Perfect for the best CTO',3000000,NULL,3,'/images/products/Private_Jet/Cessna_Citation_M2.jpg','/images/products/Private_Jet/Cessna_Citation_M2_Logo.png'),(5,'BMW I8','Fell the power',142200,NULL,4,'/images/products/Sport_Car/bmw_i8.jpg','/images/products/Sport_Car/bmw_i8_Logo.png'),(6,'Porsche 911','The true car',125792,NULL,4,'/images/products/Sport_Car/Porsche_911.png','/images/products/Sport_Car/Porsche_911_Logo.png'),(7,'DOJO','For your best cruises',10000000,NULL,5,'/images/products/Yacht/DOJO.jpg','/images/products/Yacht/DOJO_Logo.png');
 /*!40000 ALTER TABLE `product` ENABLE KEYS */;
 UNLOCK TABLES;
 

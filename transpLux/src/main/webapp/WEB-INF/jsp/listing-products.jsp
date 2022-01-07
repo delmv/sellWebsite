@@ -18,7 +18,7 @@
     <div class="collapse navbar-collapse" id="collapsibleNavbar">
         <ul class="navbar-nav">
             <li class="nav-item">
-                <a class="nav-link" href="/transpLux/products/all">All</a>
+                <a class="nav-link" href="/transpLux/products/all"><spring:message code="allCategorySelector"/></a>
             </li>
             <c:forEach var="category" items="${categories}">
                 <li class="nav-item">
@@ -32,18 +32,18 @@
 <!-- ========================= SECTION PAGETOP ========================= -->
 <section class="section-pagetop bg">
     <div class="container">
-        <h2 class="title-page">Category products</h2>
+        <h2 class="title-page"><spring:message code="categoryLabel"/> ${category.getNameByLocal(locale)}</h2>
         <nav>
             <ol class="breadcrumb text-white">
-                <li class="breadcrumb-item"><a href="../">Home</a></li>
+                <li class="breadcrumb-item"><a href="../"><spring:message code="homeLabel"/></a></li>
                 <c:choose>
                     <c:when test="${!noCategory}">
-                        <li class="breadcrumb-item"><a href="./all">Products</a></li>
+                        <li class="breadcrumb-item"><a href="./all"><spring:message code="productsLabel"/></a></li>
                         <li class="breadcrumb-item active"
                             aria-current="page">${category.getNameByLocal(locale)}</li>
                     </c:when>
                     <c:otherwise>
-                        <li class="breadcrumb-item active" aria-current="page">Products</li>
+                        <li class="breadcrumb-item active" aria-current="page"><spring:message code="productsLabel"/></li>
                     </c:otherwise>
                 </c:choose>
             </ol>
@@ -75,12 +75,10 @@
                                     <del class="price-old"> ${product.getPrice()}</del>
                                 </c:if>
                             </div> <!-- info-price-detail // -->
-                            <p class="text-success">Free shipping</p>
+                            <p class="text-success"><spring:message code="freeShippingLabel"/></p>
                             <br>
                             <p>
-                                <a href="./details/${product.getId()}" class="btn btn-primary btn-block"> Details </a>
-                                <a href="#" class="btn btn-light btn-block"><i class="fa fa-heart"></i>
-                                    <span class="text">Add to wishlist</span></a>
+                                <a href="./details/${product.getId()}" class="btn btn-primary btn-block"><spring:message code="detailsLabel"/></a>
                             </p>
                         </div> <!-- info-aside.// -->
                     </aside> <!-- col.// -->
@@ -96,19 +94,6 @@
     </div> <!-- container .//  -->
 </section>
 <!-- ========================= SECTION CONTENT END// ========================= -->
-
-<!-- ========================= FOOTER ========================= -->
-<footer class="section-footer border-top padding-y">
-    <div class="container">
-        <p class="float-md-right">
-            &copy Copyright 2019 All rights reserved
-        </p>
-        <p>
-            <a href="#">Terms and conditions</a>
-        </p>
-    </div><!-- //container -->
-</footer>
-<!-- ========================= FOOTER END // ========================= -->
 
 
 </body>

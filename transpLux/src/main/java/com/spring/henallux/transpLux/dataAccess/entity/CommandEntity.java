@@ -8,7 +8,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Entity
-@Table(name = "`order`")
+@Table(name = "command")
 public class CommandEntity {
 
     @Id
@@ -16,7 +16,7 @@ public class CommandEntity {
     @Column(name = "id")
     private Integer id;
 
-    @Column(name = "order_date")
+    @Column(name = "date")
     private Date date;
 
     @Column(name = "is_paid")
@@ -25,7 +25,7 @@ public class CommandEntity {
     @Column(name = "user_email")
     private String userEmail;
 
-    @OneToMany(targetEntity = LineItemEntity.class, mappedBy = "orderId")
+    @OneToMany(mappedBy = "id")
     private List<LineItemEntity> items;
 
     public Integer getId() {

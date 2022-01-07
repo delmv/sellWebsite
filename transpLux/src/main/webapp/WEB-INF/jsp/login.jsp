@@ -12,7 +12,7 @@
 <!-- ============================ COMPONENT LOGIN   ================================= -->
 	<div class="card mx-auto" style="max-width: 380px; margin-top:100px;">
       <div class="card-body">
-      <h4 class="card-title mb-4">Sign in</h4>
+      <h4 class="card-title mb-4"><spring:message code="loginButton"/></h4>
       <form:form id="login"
                 method="post"
                  action=""
@@ -40,7 +40,7 @@
       </div> <!-- card-body.// -->
     </div> <!-- card .// -->
 
-     <p class="text-center mt-4">Don't have account? <a href="./register">Sign up</a></p>
+     <p class="text-center mt-4"><spring:message code="noAccountLabel"/> <a href="./register"><spring:message code="registerLabel"/></a></p>
      <br><br>
 <!-- ============================ COMPONENT LOGIN  END.// ================================= -->
 

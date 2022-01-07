@@ -23,35 +23,6 @@ public class CategoryConverter {
         return mapper.map(category, CategoryEntity.class);
     }
 
-    /*
-    public Category categoryEntityToCategoryModel(CategoryEntity categoryEntity) {
-        Category category = mapper.map(categoryEntity,Category.class);
-        HashMap<String,String> trads = new HashMap<>();
-
-        Collection<TranslationEntity> translationEntities = categoryEntity.getTranslations();
-        //trucs qui marchent pas
-        /*
-        Translation translation;
-        TranslationConverter translationConverter = new TranslationConverter();
-        ArrayList<Translation> translations = new ArrayList<>();*/
-
-        for(TranslationEntity translationEntity : translationEntities){
-            LanguageEntity language = translationEntity.getLanguage();
-            String key = language.getName();
-            String value = translationEntity.getName();
-            trads.put(key, value);
-
-            /*//trucs qui marchent pas
-            translation = translationConverter.translationEntityToTranslationModel(translationEntity);
-            translations.add(translation);*/
-        }
-        category.setTrads(trads);
-
-        //category.setTranslations(translations);
-
-        return category;
-    }
-    */
 
     public Category categoryEntityToCategoryModel(CategoryEntity categoryEntity) {
 

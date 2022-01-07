@@ -7,6 +7,7 @@ import com.spring.henallux.transpLux.model.Command;
 import com.spring.henallux.transpLux.model.User;
 import com.spring.henallux.transpLux.services.CommandService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -17,7 +18,7 @@ import java.util.ArrayList;
 
 @Controller
 @RequestMapping(value = "/purchase")
-@SessionAttributes({Constants.CURRENT_USER, Constants.CART})
+@SessionAttributes({Constants.CART})
 public class PurchaseController {
 
     private CommandService orderService;
@@ -25,11 +26,6 @@ public class PurchaseController {
     @Autowired
     public PurchaseController(CommandService orderService) {
         this.orderService = orderService;
-    }
-
-    @ModelAttribute(Constants.CURRENT_USER)
-    public User user(){
-        return new User();
     }
 
     @ModelAttribute(Constants.CART)
@@ -50,11 +46,12 @@ public class PurchaseController {
 
     @RequestMapping(value = "/registerCommand", method = RequestMethod.POST)
     public String registerCommand(Model model,
-                                  @ModelAttribute(value = Constants.CURRENT_USER) User user,
+                                  Authentication auth,
                                   @ModelAttribute(value = Constants.CART) Cart cart) {
         Command order = new Command();
         ArrayList<LineItem> items = new ArrayList<>();
 
+        User user = (User) auth.getPrincipal();
         order.setUserEmail(user.getEmail());
 
         cart.getProducts().values().forEach(p -> {
@@ -71,7 +68,9 @@ public class PurchaseController {
 
     @RequestMapping(value = "/validateOrder", method = RequestMethod.GET)
     public String validateCommand(Model model,
-                                  @ModelAttribute(value = Constants.CURRENT_USER) User user) {
+                                  Authentication auth) {
+        User user = (User) auth.getPrincipal();
+
         int orderId = user.getCurrentOrderId();
         if (orderId != 0)
             orderService.validatePayment(orderId);
