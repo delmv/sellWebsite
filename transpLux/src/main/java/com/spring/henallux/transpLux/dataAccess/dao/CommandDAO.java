@@ -31,6 +31,7 @@ public class CommandDAO implements CommandAccessData {
     }
 
     @Override
+    @Transactional
     public int insertNewCommand(Command order, ArrayList<LineItem> items) {
         CommandEntity orderEntity = orderConverter.commandModelToCommandEntity(order);
 

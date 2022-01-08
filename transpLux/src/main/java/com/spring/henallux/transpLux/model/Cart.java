@@ -36,4 +36,8 @@ public class Cart {
         return products.isEmpty();
     }
 
+    public void empty() {
+        this.products.clear();
+    }
+
 }
