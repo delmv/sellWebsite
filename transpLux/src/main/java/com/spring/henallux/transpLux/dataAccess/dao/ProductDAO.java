@@ -4,9 +4,11 @@ import com.spring.henallux.transpLux.dataAccess.entity.ProductEntity;
 import com.spring.henallux.transpLux.dataAccess.repository.ProductRepository;
 import com.spring.henallux.transpLux.dataAccess.util.ProductConverter;
 import com.spring.henallux.transpLux.exceptions.EmptyProductListException;
+import com.spring.henallux.transpLux.exceptions.ProductNotFound;
 import com.spring.henallux.transpLux.model.Product;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -14,6 +16,7 @@ import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 @Service
+
 public class ProductDAO implements ProductAccessDAO {
 
     private ProductRepository productRepository;
@@ -50,11 +53,11 @@ public class ProductDAO implements ProductAccessDAO {
     }
 
     @Override
-    public Product findProductById(Integer id) throws Exception {
+    public Product findProductById(Integer id) throws ProductNotFound {
 
         ProductEntity productEntity =  productRepository.findProductEntityById(id);
 
-        if (productEntity == null) throw new Exception();
+        if (productEntity == null) throw new ProductNotFound();
 
         return productConverter.productEntityToProductModel(productEntity);
 

@@ -1,6 +1,6 @@
 package com.spring.henallux.transpLux.dataAccess.service;
 
-import com.spring.henallux.transpLux.dataAccess.dao.UserDataAccess;
+import com.spring.henallux.transpLux.dataAccess.dao.UserAccessDAO;
 import com.spring.henallux.transpLux.model.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -10,10 +10,10 @@ import org.springframework.stereotype.Service;
 
 @Service
 public class UserDetailsServiceImplementation implements UserDetailsService {
-    private UserDataAccess userDataAccess;
+    private UserAccessDAO userDataAccess;
 
     @Autowired
-    public UserDetailsServiceImplementation(UserDataAccess userDataAccess){
+    public UserDetailsServiceImplementation(UserAccessDAO userDataAccess){
         this.userDataAccess = userDataAccess;
     }
 

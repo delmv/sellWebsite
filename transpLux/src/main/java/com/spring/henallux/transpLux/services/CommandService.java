@@ -1,5 +1,6 @@
 package com.spring.henallux.transpLux.services;
 
+import com.spring.henallux.transpLux.dataAccess.dao.CommandAccessData;
 import com.spring.henallux.transpLux.dataAccess.dao.CommandDAO;
 import com.spring.henallux.transpLux.model.LineItem;
 import com.spring.henallux.transpLux.model.Command;
@@ -10,9 +11,9 @@ import java.util.ArrayList;
 @Service
 public class CommandService {
 
-    private CommandDAO commandDAO;
+    private CommandAccessData commandDAO;
 
-    public CommandService(CommandDAO orderDAO) {
+    public CommandService(CommandAccessData orderDAO) {
         this.commandDAO = orderDAO;
     }
 

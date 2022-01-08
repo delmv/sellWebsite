@@ -51,11 +51,7 @@ public class WelcomeController {
         model.addAttribute("title", "My Account");
         return "integrated:account";
     }
-    @RequestMapping(value = "/shoppingCart",method = RequestMethod.GET)
-    public String shoppingCart(Model model){
-        model.addAttribute("title", "Shopping Cart");
-        return "integrated:shopping-cart";
-    }
+
 
     @RequestMapping(value = "/aboutus",method = RequestMethod.GET)
     public String aboutUse(Model model){

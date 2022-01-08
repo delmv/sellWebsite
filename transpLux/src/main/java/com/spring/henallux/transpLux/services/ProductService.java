@@ -1,7 +1,9 @@
 package com.spring.henallux.transpLux.services;
 
+import com.spring.henallux.transpLux.dataAccess.dao.ProductAccessDAO;
 import com.spring.henallux.transpLux.dataAccess.dao.ProductDAO;
 import com.spring.henallux.transpLux.exceptions.EmptyProductListException;
+import com.spring.henallux.transpLux.exceptions.ProductNotFound;
 import com.spring.henallux.transpLux.model.Cart;
 import com.spring.henallux.transpLux.model.Product;
 import com.spring.henallux.transpLux.model.Promotion;
@@ -15,34 +17,28 @@ import java.util.Date;
 @Service
 public class ProductService {
 
-    private ProductDAO productDAO;
+    private ProductAccessDAO productDAO;
 
     @Autowired
     public ProductService(ProductDAO productDAO) {
         this.productDAO = productDAO;
     }
 
-    public ProductService() {
+    public ProductService(){}
 
-    }
+    public ArrayList<Product> findProductsByCategory(String category) throws EmptyProductListException {
+        ArrayList<Product> products = productDAO.findProductsByCategory(category);
 
-
-    public ArrayList<Product> findProductsByCategory(String category) throws Exception {
-        try {
-            ArrayList<Product> products = productDAO.findProductsByCategory(category);
-
-            for (Product product : products) {
-                calculateDiscount(product);
-                calculatePriceWithDiscount(product);
-            }
-
-            return products;
-        } catch (Exception e) {
-            throw e;
+        for (Product product : products) {
+            calculateDiscount(product);
+            calculatePriceWithDiscount(product);
         }
+
+        return products;
+
     }
 
-    public ArrayList<Product> findAllProducts() throws Exception {
+    public ArrayList<Product> findAllProducts() throws EmptyProductListException {
         try {
             ArrayList<Product> products = productDAO.findProductsByCategory(null);
 
@@ -57,16 +53,12 @@ public class ProductService {
         }
     }
 
-    public Product findProductById(Integer id) throws Exception {
-        try {
-            Product product = productDAO.findProductById(id);
-            calculateDiscount(product);
-            calculatePriceWithDiscount(product);
+    public Product findProductById(Integer id) throws ProductNotFound {
+        Product product = productDAO.findProductById(id);
+        calculateDiscount(product);
+        calculatePriceWithDiscount(product);
 
-            return product;
-        } catch (Exception e) {
-            throw e;
-        }
+        return product;
     }
 
     public void calculateDiscount(Product product) {

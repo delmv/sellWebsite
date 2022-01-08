@@ -7,16 +7,23 @@ import org.springframework.security.config.annotation.authentication.builders.Au
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
+import org.springframework.security.core.AuthenticationException;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.web.authentication.AuthenticationFailureHandler;
 import org.springframework.security.web.authentication.SavedRequestAwareAuthenticationSuccessHandler;
+
+import javax.servlet.ServletException;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import java.io.IOException;
 
 @Configuration
 @EnableWebSecurity
 public class WebSecurityConfiguration extends WebSecurityConfigurerAdapter {
 
     private static final String LOGIN_REQUEST = "/login";
-    private static final String[] AUTHORIZED_REQUESTS_ANYBODY = new String[]{"/", "/aboutus","/register", "/login/*","/register/send", "/cart", "/cart/addToCart/*" ,"/cart/changeQuantity/*","/cart/remove/*","/products/*","/products/details/*","/css/**","/js/**", "/images/**","/fonts/**"};
+    private static final String[] AUTHORIZED_REQUESTS_ANYBODY = new String[]{"/", "/fail", "/aboutus","/register", "/login/*","/register/send", "/cart", "/cart/addToCart/*" ,"/cart/changeQuantity/*","/cart/remove/*","/products/*","/products/details/*","/css/**","/js/**", "/images/**","/fonts/**"};
     private static final String[] AUTHORIZED_REQUESTS_ADMIN = new String[]{"/admin"};
 
     private UserDetailsService userDetailsServiceImpl;
@@ -44,13 +51,22 @@ public class WebSecurityConfiguration extends WebSecurityConfigurerAdapter {
                 .and()
                 .formLogin() // We define the login part here.
                 .successHandler(new SavedRequestAwareAuthenticationSuccessHandler()) // provided by spring to redirect to the last request
+                .defaultSuccessUrl("/")
+                .failureUrl("/login?error=true")
+/*                .failureHandler(new AuthenticationFailureHandler() {
+                    @Override
+                    public void onAuthenticationFailure(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse, AuthenticationException e) throws IOException, ServletException {
+                        System.out.println("azerty");
+
+                        httpServletResponse.sendRedirect("transpLux/login?error=true");
+                    }
+                })*/
                 .loginPage(LOGIN_REQUEST) // We specify a login page. Otherwise spring creates one by default
                 .permitAll() // To make the login page the available for any user
 
                 .and()
                 .logout() // We define the logout part here - By default : URL = "/logout"
-                //.logoutUrl("...") // If other link than "/logout" (that is by default)
-                .logoutSuccessUrl("/")  // URL to return if logout is successfull
+                .logoutSuccessUrl("/login?logout=true")  // URL to return if logout is successfull
                 .permitAll(); // To make the logout available for any user
     }
 

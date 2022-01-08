@@ -41,7 +41,6 @@ class ProductServiceTest {
     @Test
     public void calculateDiscount() {
         productService.calculateDiscount(product);
-        Date today = new Date();
         Assert.assertEquals(20.0, product.getDiscountPrice(), 1.0);
     }
 

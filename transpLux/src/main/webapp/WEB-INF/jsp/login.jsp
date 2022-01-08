@@ -13,6 +13,14 @@
 	<div class="card mx-auto" style="max-width: 380px; margin-top:100px;">
       <div class="card-body">
       <h4 class="card-title mb-4"><spring:message code="loginButton"/></h4>
+          <c:if test="${not empty error}">
+              <div style="color:green; font-weight: bold; margin: 30px 0px;">
+                  <spring:message code="userNameOrPasswordIncorrect"/>
+              </div></c:if>
+          <c:if test="${not empty logout}">
+              <div style="color:red; font-weight: bold; margin: 30px 0px;">
+                  <spring:message code="lougoutSuccessful"/>
+              </div></c:if>
       <form:form id="login"
                 method="post"
                  action=""

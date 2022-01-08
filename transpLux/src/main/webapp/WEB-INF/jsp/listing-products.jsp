@@ -22,7 +22,7 @@
             </li>
             <c:forEach var="category" items="${categories}">
                 <li class="nav-item">
-                    <a class="nav-link" href="/transpLux/products/${category.getDefaultName()}">${category.getNameByLocal(locale)}</a>
+                    <a class="nav-link" href="/transpLux/products/${category.defaultName}">${category.getNameByLocal(locale)}</a>
                 </li>
             </c:forEach>
         </ul>
@@ -59,26 +59,26 @@
             <article class="card card-product-list">
                 <div class="row no-gutters">
                     <aside class="col-md-3">
-                        <a href="./details/${product.getId()}" class="img-wrap"><img src='<spring:url value="${product.getProductImage()}" />' ></a>
+                        <a href="./details/${product.id}" class="img-wrap"><img src='<spring:url value="${product.productImage}" />' ></a>
                     </aside> <!-- col.// -->
                     <div class="col-md-6">
                         <div class="info-main">
-                            <a href="./details/${product.getId()}" class="h5 title"> ${product.getLabel()} </a>
-                            <p>${product.getDescription()}</p>
+                            <a href="./details/${product.id}" class="h5 title"> ${product.label} </a>
+                            <p>${product.description}</p>
                         </div> <!-- info-main.// -->
                     </div> <!-- col.// -->
                     <aside class="col-sm-3">
                         <div class="info-aside">
                             <div class="price-wrap">
-                                <span class="price h5"> ${product.getPriceWithDiscount()} </span>
-                                <c:if test="${product.getPriceWithDiscount() != product.getPrice()}">
-                                    <del class="price-old"> ${product.getPrice()}</del>
+                                <span class="price h5"> ${product.priceWithDiscount}€ </span>
+                                <c:if test="${product.priceWithDiscount != product.price}">
+                                    <del class="price-old"> ${product.price}€</del>
                                 </c:if>
                             </div> <!-- info-price-detail // -->
                             <p class="text-success"><spring:message code="freeShippingLabel"/></p>
                             <br>
                             <p>
-                                <a href="./details/${product.getId()}" class="btn btn-primary btn-block"><spring:message code="detailsLabel"/></a>
+                                <a href="./details/${product.id}" class="btn btn-primary btn-block"><spring:message code="detailsLabel"/></a>
                             </p>
                         </div> <!-- info-aside.// -->
                     </aside> <!-- col.// -->

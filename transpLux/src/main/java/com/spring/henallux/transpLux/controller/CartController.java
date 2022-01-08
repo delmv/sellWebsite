@@ -41,7 +41,7 @@ public class CartController {
 
     @RequestMapping(method = RequestMethod.GET)
     public String cart(Model model, @ModelAttribute(value = Constants.CART)Cart cart, @ModelAttribute(value = Constants.CURRENT_USER) User user) {
-
+        model.addAttribute("title", "Shopping Cart");
         model.addAttribute("cart", cart);
         model.addAttribute("quantity", new Quantity());
         model.addAttribute("nbItemsCart", cart.getProducts().size());
@@ -57,18 +57,15 @@ public class CartController {
     public String addToCart(Model model, @PathVariable String productId, @Valid @ModelAttribute(value = "quantity") Quantity quantity, @ModelAttribute(value = Constants.CART) Cart cart, final BindingResult errors) {
 
         if (errors.hasErrors()) {
-
             return null;
-
         }
 
-        // MODIFIER L'EXCEPTION
         try {
             Product product = productService.findProductById(Integer.parseInt(productId));
             System.out.println(quantity.getNumber());
             cart.addProduct(product, quantity.getNumber());
         } catch (Exception e) {
-            System.out.println("Erreur lors du parse");
+            return "redirect:/fail";
         }
 
         return "redirect:/products/details/" + productId;
@@ -92,15 +89,9 @@ public class CartController {
             cart.getProducts().get(productIdInt).setQuantity(quantity.getNumber());
         }
 
-        model.addAttribute("cart", cart);
-        model.addAttribute("nbItemsCart", cart.getProducts().size());
-        model.addAttribute("cartService", cartService);
-        model.addAttribute("cartPriceWithoutDiscounts", cartService.getCartTotalPriceWithoutDiscounts(cart));
-        model.addAttribute("cartTotalDiscount", cartService.getTotalDiscounts(cart));
-        model.addAttribute("cartTotalPrice", cartService.getTotalPriceWithDiscounts(cart));
-
-        return "integrated:shopping-cart";
+        return cart(model, cart);
     }
+
 
     @RequestMapping(value = "/remove/{productId}", method = RequestMethod.POST)
     public String removeItem(Model model,
@@ -115,6 +106,10 @@ public class CartController {
         }
 
         model.addAttribute("quantity", new Quantity());
+        return cart(model, cart);
+    }
+
+    private String cart(Model model, @ModelAttribute(Constants.CART) Cart cart) {
         model.addAttribute("cart", cart);
         model.addAttribute("nbItemsCart", cart.getProducts().size());
         model.addAttribute("cartService", cartService);

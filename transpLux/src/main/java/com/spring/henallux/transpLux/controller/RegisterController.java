@@ -1,17 +1,16 @@
 package com.spring.henallux.transpLux.controller;
 
 import com.spring.henallux.transpLux.Constants;
-import com.spring.henallux.transpLux.dataAccess.dao.UserDataAccess;
+import com.spring.henallux.transpLux.exceptions.UsernameOrEmailAlreadyExistException;
 import com.spring.henallux.transpLux.model.Cart;
 import com.spring.henallux.transpLux.model.User;
+import com.spring.henallux.transpLux.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.SessionAttributes;
+import org.springframework.web.bind.annotation.*;
+
 import javax.validation.Valid;
 
 @Controller
@@ -19,11 +18,11 @@ import javax.validation.Valid;
 @SessionAttributes({Constants.CURRENT_USER, Constants.CART})
 public class RegisterController {
 
-    private UserDataAccess userDataAccess;
+    private UserService userService;
 
     @Autowired
-    public RegisterController(UserDataAccess userDataAccess){
-        this.userDataAccess = userDataAccess;
+    public RegisterController(UserService userService){
+        this.userService = userService;
     }
 
     @ModelAttribute(Constants.CURRENT_USER)
@@ -37,11 +36,13 @@ public class RegisterController {
     }
 
     @RequestMapping(method = RequestMethod.GET)
-    public String register(Model model, @ModelAttribute(value = Constants.CART) Cart cart){
+    public String register(Model model,
+                           @RequestParam(value = "error", required = false) String error,
+                           @ModelAttribute(value = Constants.CART) Cart cart){
         model.addAttribute("title", "Register");
         model.addAttribute("registerForm", new User());
         model.addAttribute("nbItemsCart", cart.getProducts().size());
-
+        model.addAttribute("error",error);
         return "integrated:register";
     }
 
@@ -51,14 +52,14 @@ public class RegisterController {
                               final BindingResult errors) {
         if (!errors.hasErrors()) {
             try {
-                userDataAccess.setUser(user);
-                return "redirect:/";
+                userService.addUser(user);
+                return "redirect:/login";
+            }catch (UsernameOrEmailAlreadyExistException e){
+                return "redirect:/register?error=emailOrUsername";
             }catch(Exception e){
-                System.out.println(e);
-                return "integrated:register";
+                return "integrated:fail";
             }
         } else {
-            System.out.println("aie");
             return "integrated:register";
         }
     }

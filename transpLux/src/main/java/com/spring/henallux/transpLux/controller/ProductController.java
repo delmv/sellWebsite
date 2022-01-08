@@ -37,14 +37,16 @@ public class ProductController {
     }
 
    @RequestMapping(value = "/{category}",method = RequestMethod.GET)
-    public String test(@PathVariable String category, Model model, @ModelAttribute(Constants.CART) Cart cart, Locale locale) {
+    public String test(@PathVariable String category,
+                       Model model,
+                       @ModelAttribute(Constants.CART) Cart cart,
+                       Locale locale) {
         model.addAttribute("title", "Products");
         boolean noCategory = category.equals("all");
         model.addAttribute("noCategory",noCategory);
 
         ArrayList<Category> categories = categoryService.findAllCategory();
         Category currentCategory = null;
-
         for (Category cat : categories) {
             if (cat.getDefaultName().equals(category)) {
                 currentCategory = cat;
@@ -69,8 +71,7 @@ public class ProductController {
 
            return "integrated:listing-products";
         }catch(Exception e){
-            System.out.println(e);
-            return "redirect:/";
+            return "redirect:/fail";
         }
     }
     @RequestMapping(value = "/details/{id}",method = RequestMethod.GET)
@@ -87,8 +88,7 @@ public class ProductController {
 
             return "integrated:product-details";
         }catch(Exception e){
-            System.out.println(e);
-            return "redirect:/";
+            return "redirect:/fail";
         }
     }
 

@@ -60,11 +60,14 @@ public class PurchaseController {
         cart.getProducts().values().forEach(p -> {
             items.add( new LineItem(p.getQuantity(), p.getProduct().getPriceWithDiscount(), p.getProduct().getId()));
         });
+        try{
+            user.setCurrentOrderId(orderService.insertNewCommand(order, items));
 
-        user.setCurrentOrderId(orderService.insertNewCommand(order, items));
-
-        model.addAttribute("paypalButtonHidden", false);
-        model.addAttribute("totalAmount", cartService.getTotalPriceWithDiscounts(cart));
+            model.addAttribute("paypalButtonHidden", false);
+            model.addAttribute("totalAmount", cartService.getTotalPriceWithDiscounts(cart));
+        }catch(Exception e){
+            return "integrated:fail";
+        }
 
         return "integrated:purchase";
     }
@@ -75,8 +78,13 @@ public class PurchaseController {
         User user = (User) auth.getPrincipal();
 
         int orderId = user.getCurrentOrderId();
-        if (orderId != 0)
-            orderService.validatePayment(orderId);
+        if (orderId != 0){
+            try {
+                orderService.validatePayment(orderId);
+            }catch (Exception e){
+                return "integrated:fail";
+            }
+        }
 
         return "redirect:/";
     }

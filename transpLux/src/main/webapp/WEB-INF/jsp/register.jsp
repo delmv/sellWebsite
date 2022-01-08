@@ -41,7 +41,9 @@
                         </form:label>
                         <form:input path="email" type="email" class="form-control" placeholder=""/>
                         <form:errors path="email" element="div"/>
-                        <small class="form-text text-muted">We'll never share your email with anyone else.</small>
+                        <small class="form-text text-muted">
+                            <spring:message code="neverShareEmail"/>
+                        </small>
                     </div> <!-- form-group end.// -->
                     <div class="col form-group">
                         <form:label path="username">
@@ -141,6 +143,10 @@
                     <form:input path="password" class="form-control" type="password"/>
                     <form:errors path="password" element="div"/>
                 </div>
+                <c:if test="${not empty error}">
+                    <div style="color:red; font-weight: bold; margin: 30px 0px;">
+                        <spring:message code="emailOrUsernameAlreadyExist"/>
+                    </div></c:if>
                 <div class="form-group">
                     <form:button type="submit" class="btn btn-primary btn-block">
                         <spring:message code="registrationButton"/>

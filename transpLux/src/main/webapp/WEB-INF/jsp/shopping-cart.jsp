@@ -39,7 +39,7 @@
 
 		<td>
 			<figure class="itemside">
-				<div class="aside"><img src='<spring:url value="${item.product.getProductLogo()}" />' class="img-sm"></div>
+				<div class="aside"><img src='<spring:url value="${item.product.productLogo}" />' class="img-sm"></div>
 				<figcaption class="info">
 					<span class="title text-dark">${item.product.label}</span>
 					<p class="text-muted small">${item.product.description}</p>
@@ -61,8 +61,8 @@
 		</form:form>
 		<td>
 			<div class="price-wrap">
-				<var class="price">${item.product.price * item.quantity}</var>
-				<small class="text-muted"> ${item.product.price} <spring:message code="eachProductLabel"/> </small>
+				<var class="price">${item.product.price * item.quantity}€</var>
+				<small class="text-muted"> ${item.product.price}€ <spring:message code="eachProductLabel"/> </small>
 			</div> <!-- price-wrap .// -->
 		</td>
 		<form:form
@@ -96,15 +96,15 @@
 			<div class="card-body">
 					<dl class="dlist-align">
 					  <dt><spring:message code="totalPriceLabel"/>:</dt>
-					  <dd class="text-right">${cartPriceWithoutDiscounts}</dd>
+					  <dd class="text-right">${cartPriceWithoutDiscounts}€</dd>
 					</dl>
 					<dl class="dlist-align">
 					  <dt><spring:message code="discountLabel"/>:</dt>
-					  <dd class="text-right">${cartTotalDiscount}</dd>
+					  <dd class="text-right">${cartTotalDiscount}€</dd>
 					</dl>
 					<dl class="dlist-align">
 					  <dt><spring:message code="totalPriceDiscountLabel"/>:</dt>
-					  <dd class="text-right  h5"><strong>${cartTotalPrice}</strong></dd>
+					  <dd class="text-right  h5"><strong>${cartTotalPrice}€</strong></dd>
 					</dl>
 			</div> <!-- card-body.// -->
 		</div>  <!-- card .// -->

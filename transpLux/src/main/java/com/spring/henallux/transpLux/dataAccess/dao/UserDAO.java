@@ -1,16 +1,22 @@
 package com.spring.henallux.transpLux.dataAccess.dao;
 
+import ch.qos.logback.core.encoder.EchoEncoder;
 import com.spring.henallux.transpLux.dataAccess.entity.UserEntity;
 import com.spring.henallux.transpLux.dataAccess.repository.UserRepository;
 import com.spring.henallux.transpLux.dataAccess.util.UserConverter;
+import com.spring.henallux.transpLux.exceptions.ErrorOccured;
 import com.spring.henallux.transpLux.exceptions.UserNotFoundException;
+import com.spring.henallux.transpLux.exceptions.UsernameOrEmailAlreadyExistException;
 import com.spring.henallux.transpLux.model.User;
+import org.hibernate.exception.JDBCConnectionException;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.stereotype.Service;
 
+import javax.validation.ConstraintViolationException;
+
 @Service
-public class UserDAO implements UserDataAccess {
+public class UserDAO implements UserAccessDAO {
 
     private UserRepository userRepository;
     private UserConverter userConverter;
@@ -25,27 +31,17 @@ public class UserDAO implements UserDataAccess {
 
 
     @Override
-    public void setUser(User user) {
+    public void setUser(User user) throws UsernameOrEmailAlreadyExistException {
 
         UserEntity userEntity = userConverter.userModelToUserEntity(user);
-
-        userRepository.save(userEntity);
-
-    }
-
-    @Override
-    public User getUser(String email, String password) throws UserNotFoundException {
-
-        UserEntity userEntity = userRepository.getUserEntityByEmailAndPassword(email, password);
-
-        if (userEntity == null)
-            throw new UserNotFoundException(email);
-
-        User user = userConverter.userEntityToUserModel(userEntity);
-
-        return user;
+        try {
+            userRepository.save(userEntity);
+        } catch(DataIntegrityViolationException e) {
+            throw new UsernameOrEmailAlreadyExistException();
+        }
 
     }
+
     @Override
     public User findByUsername(String userName) {
         UserEntity userEntity =  userRepository.findByUsername(userName);

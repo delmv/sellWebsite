@@ -1,5 +1,6 @@
 package com.spring.henallux.transpLux.services;
 
+import com.spring.henallux.transpLux.dataAccess.dao.CategoryAccessDAO;
 import com.spring.henallux.transpLux.dataAccess.dao.CategoryDAO;
 import com.spring.henallux.transpLux.model.Category;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,10 +11,10 @@ import java.util.ArrayList;
 @Service
 public class CategoryService {
 
-    private CategoryDAO categoryDAO;
+    private CategoryAccessDAO categoryDAO;
 
     @Autowired
-    public CategoryService(CategoryDAO categoryDAO) {
+    public CategoryService(CategoryAccessDAO categoryDAO) {
         this.categoryDAO = categoryDAO;
     }
 
