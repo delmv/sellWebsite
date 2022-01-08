@@ -7,6 +7,7 @@ import com.spring.henallux.transpLux.model.Command;
 import com.spring.henallux.transpLux.model.User;
 import com.spring.henallux.transpLux.services.CartService;
 import com.spring.henallux.transpLux.services.CommandService;
+import org.apache.tomcat.util.bcel.Const;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
@@ -74,13 +75,15 @@ public class PurchaseController {
 
     @RequestMapping(value = "/validateOrder", method = RequestMethod.GET)
     public String validateCommand(Model model,
-                                  Authentication auth) {
+                                  Authentication auth,
+                                  @ModelAttribute(value = Constants.CART) Cart cart) {
         User user = (User) auth.getPrincipal();
 
         int orderId = user.getCurrentOrderId();
         if (orderId != 0){
             try {
                 orderService.validatePayment(orderId);
+                cart.empty();
             }catch (Exception e){
                 return "integrated:fail";
             }
