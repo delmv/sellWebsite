@@ -73,9 +73,6 @@
                             <span class="badge badge-pill badge-danger notify">${nbItemsCart}</span>
                         </div>
                         <div class="widget-header icontext">
-                            <sec:authorize access="isAuthenticated()">
-                                <a href='<spring:url value="myAccount"/>' class="icon icon-sm rounded-circle border"><i class="fa fa-user"></i></a>
-                            </sec:authorize>
                             <div class="text">
                                 <span class="text-muted"><spring:message code="welcomeLabel" />
                                         ${pageContext.request.userPrincipal.principal.firstName}
