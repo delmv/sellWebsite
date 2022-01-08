@@ -1,5 +1,6 @@
 package com.spring.henallux.transpLux.model;
 
+import org.hibernate.validator.constraints.Length;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -13,25 +14,31 @@ import java.util.List;
 
 public class User implements UserDetails {
     @NotBlank
+    @Length(max = 45)
     private String username;
 
     @NotBlank()
+    @Length(max = 20)
     private String firstName;
 
     @NotBlank
+    @Length(max = 20)
     private String lastName;
 
     @NotBlank
     @Email
+    @Length(max = 50)
     private String email;
 
     @NotNull
     private Boolean male;
 
     @NotBlank
+    @Length(max = 20)
     private String city;
 
     @NotBlank
+    @Length(max = 20)
     private String country;
 
     @NotNull
@@ -43,11 +50,13 @@ public class User implements UserDetails {
     private Integer zipCode;
 
     @NotBlank
+    @Length(max = 100)
     private String address;
 
     @NotBlank
     private String phone;
 
+    @Length(max = 45)
     private String favoriteAnimal;
 
     private String authorities;
