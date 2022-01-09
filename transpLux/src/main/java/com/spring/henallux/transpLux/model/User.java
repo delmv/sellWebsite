@@ -42,7 +42,7 @@ public class User implements UserDetails {
     private String country;
 
     @NotNull
-    @Size(min=5, max = 2000)
+    @Size(min=5, max = 200)
     private String password;
 
     @NotNull
